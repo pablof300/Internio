@@ -24,6 +24,7 @@ public final class User
         this.username = username;
         this.password = password;
         this.id = new ObjectId();
+        this.settings= new UserSettings();
     }
 
     public String getUsername() {
@@ -48,6 +49,30 @@ public final class User
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public InternshipInfo getInternshipInfo() {
+        return internship;
+    }
+
+    public void setInternshipInfo(InternshipInfo internship) {
+        this.internship = internship;
+    }
+
+    public UserSettings getUserSettings() {
+        return settings;
+    }
+
+    public void getUserSettings(UserSettings settings) {
+        this.settings = settings;
+    }
+
+    public UserPrefrences getUserPrefrences() {
+        return prefrences;
+    }
+
+    public void setUserPrefrences(UserPrefrences prefrences) {
+        this.prefrences = prefrences;
     }
 
     @Override
