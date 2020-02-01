@@ -20,9 +20,8 @@ public class InternioServiceImpl
         return userDAO.getUser(username).get();
     }
 
-//    public String getDeveloperName() {
-//        User user = new User("user", "password");
-//        userDAO.insertUser(user);
-//        return "Pablo Estrada :)";
-//    }
+    public void loadData() {
+        User user = new User("user", "password");
+        userDAO.insertUser(user);
+    }
 }
