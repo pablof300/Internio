@@ -67,6 +67,15 @@ public final class User
         return internships;
     }
 
+    public InternshipInfo getInternshipInfo(ObjectId internshipId){
+        for(int i=0; i<internships.size();i++){
+          if( internships.get(i).getId().equals(internshipId)) {
+              return internships.get(i);
+          }
+        }
+        return null;
+    }
+
     public void setInternships(List<InternshipInfo> internships) {
         this.internships = internships;
     }

@@ -3,10 +3,12 @@ package me.pabloestrada.core.user;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.codecs.configuration.CodecRegistries;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -55,5 +57,11 @@ public final class UserDAO
 
     public Optional<User> getUser(final String username) {
         return Optional.ofNullable(collection.find(eq("username", username)).first());
+    }
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> allUsers = new ArrayList<>();
+//        collection.find(new Document()).forEach(user -> {});
+        return null;
+
     }
 }
