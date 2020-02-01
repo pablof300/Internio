@@ -1,0 +1,17 @@
+.Sidebar {
+  position: fixed;
+  height: 100vh;
+  top: 0px;
+  bottom: 0px;
+  overflowY: auto;
+}
+
+.Container {
+  position: absolute !important;
+  margin-left: 22.5vw !important;
+  width: 70vw !important;
+}
+
+.InnerContainer {
+  height: 90vh !important;
+}

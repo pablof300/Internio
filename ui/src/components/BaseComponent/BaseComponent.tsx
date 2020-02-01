@@ -35,7 +35,6 @@ export class BaseComponent extends React.Component<Props, State> {
         <p className={styles.Text}>
           Hello {this.props.name}! The count is {this.state.count} and the developer name is {this.state.developerName}
         </p>
-        <ReactLogo />
       </>
     )
   }
