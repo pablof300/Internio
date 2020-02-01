@@ -56,4 +56,3 @@ public final class UserAuthenticator
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 }
-

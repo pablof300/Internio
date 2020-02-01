@@ -1,5 +1,7 @@
 package me.pabloestrada.core.internship;
 
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 
 public final class InternshipInfo
@@ -9,11 +11,12 @@ public final class InternshipInfo
     private Date startDate;
     private Date endDate;
     private String company;
+    private ObjectId id;
 
     public InternshipInfo() {
     }
 
-    public InternshipInfo(String locationCity, String locationState, Date startDate, Date endDate) {
+    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate) {
         this.locationCity = locationCity;
         this.locationState = locationState;
         this.startDate = startDate;
@@ -60,4 +63,8 @@ public final class InternshipInfo
     public void setCompany(String company) {
         this.company = company;
     }
+
+    public ObjectId getId() { return id; }
+
+    public void setId(ObjectId id) { this.id = id; }
 }
