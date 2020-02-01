@@ -6,69 +6,62 @@ import java.util.Objects;
 
 public final class InternshipInfo
 {
-    private String username;
-    private String password;
-    private ObjectId id;
+    private String locationCity;
+    private String locationState;
+    private Date startDate;
+    private Date endDate;
+    private String company;
+
+
 
     public InternshipInfo() {
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public InternshipInfo(String  locationCity, String locationState, int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay) {
+        this.locationCity = locationCity;
+        this.locationState = locationState;
+        startDate = new Date(startDate, startMonth, startDay);
+        endDate = new Date(endDate, endMonth, endDay);
+
     }
 
-    public User(String username, String password, boolean generateId) {
-        this.username = username;
-        this.password = password;
-        this.id = new ObjectId();
+    public String getCity() {
+        return locationCity;
     }
 
-    public String getUsername() {
-        return username;
+    public void setCity(String locationCity) {
+        this.locationCity = locationCity;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getState() {
+        return locationState;
     }
 
-    public String getPassword() {
-        return password;
+    public void setState(String locationState) {
+        this.locationState = locationState;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public ObjectId getId() {
-        return id;
+    public void setStartDate(int startYear, int startMonth, int startDay) {
+        this.startDate = new Date(startYear, startMonth, startDate);
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(id, user.id);
+    public void setEndDate(int endYear, int endMonth, int endDay) {
+        this.endDate = new Date(endYear, endMonth, endDate);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, password, id);
+    public String getCompany() {
+        return company;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
-                '}';
+    public void setCompany() {
+        this.company = company;
     }
 }
