@@ -1,0 +1,27 @@
+{
+  "swagger" : "2.0",
+  "info" : { },
+  "tags" : [ {
+    "name" : "Internio"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/Internio/dev" : {
+      "get" : {
+        "tags" : [ "Internio" ],
+        "summary" : "Getting developer name",
+        "description" : "",
+        "operationId" : "getDeveloperName",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
