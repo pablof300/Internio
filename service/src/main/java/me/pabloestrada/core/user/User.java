@@ -90,12 +90,5 @@ public final class User
         return Objects.hash(username, password, id);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
-                '}';
-    }
+
 }
