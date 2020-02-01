@@ -13,14 +13,11 @@ export class SignupPage extends React.Component<{},{}> {
             <Segment very padded stacked>
               <img src={Logo} style={{height: "15vh"}} />
               <Header as='h1' textAlign='center'>
-                Internio
+                Signup
               </Header>
-
-              <Header.Subheader>
-                placeholder text about what Internio is
-              </Header.Subheader>
+              <Form.Input fluid icon='mail' iconPosition='left' placeholder='Email' />
               <br/>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
               <br/>
               <Form.Input
                 fluid
@@ -32,7 +29,7 @@ export class SignupPage extends React.Component<{},{}> {
 
               <br/>
               <Button color='blue'>
-                Login
+                Signup
               </Button>
             </Segment>
           </Grid.Column>

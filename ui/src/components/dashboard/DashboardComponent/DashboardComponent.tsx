@@ -5,12 +5,10 @@ import { InternioApi } from "../../../api/index";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router-dom";
 import { User } from "../../../api/index";
-import {
-  Datepicker,
-  DateRangeInput,
-  DateSingleInput,
-  START_DATE
-} from "@datepicker-react/styled";
+import Datetime from 'react-datetime';
+import * as moment from 'moment';
+
+import "../../../../node_modules/react-datetime/css/react-datetime.css";
 
 import {
   Grid,
@@ -40,8 +38,8 @@ interface State {
   company: string;
   city: string;
   state: string;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: Number;
+  endDate?: Number;
 }
 
 export class DashboardComponent extends React.Component<{}, State> {
@@ -63,6 +61,23 @@ export class DashboardComponent extends React.Component<{}, State> {
     this.setCompany = this.setCompany.bind(this);
     this.setState = this.setState.bind(this);
     this.setCity = this.setCity.bind(this);
+    this.setStartDate = this.setStartDate.bind(this);
+    this.setEndDate = this.setEndDate.bind(this);
+    this.submitNewInternship = this.submitNewInternship.bind(this);
+  }
+
+  submitNewInternship(e : React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault()
+  }
+
+  setStartDate(e: string | moment.Moment) {
+    let date = e as moment.Moment
+    this.setState({ startDate: date.unix() });
+  }
+
+  setEndDate(e: string | moment.Moment) {
+    let date = e as moment.Moment
+    this.setState({ endDate: date.unix() });
   }
 
   setCity(e: React.ChangeEvent<HTMLInputElement>) {
@@ -104,7 +119,6 @@ export class DashboardComponent extends React.Component<{}, State> {
     if (!this.state.authenticated) {
       return <Redirect to="/login" />;
     }
-    let d = new Date();
     return (
       <>
         <Menu
@@ -155,8 +169,15 @@ export class DashboardComponent extends React.Component<{}, State> {
                     <label>
                       <strong>Start date</strong>
                     </label>
+                    <Datetime onChange={this.setStartDate} />
 
-                    <Button className={styles.Button} type="submit">
+                    <p className={styles.Spacer}></p>
+                    <label>
+                      <strong>End date</strong>
+                    </label>
+                    <Datetime onChange={this.setEndDate} />
+
+                    <Button primary className={styles.Button} onChange={this.submitNewInternship}>
                       Submit
                     </Button>
                   </Form>

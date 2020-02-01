@@ -6,6 +6,7 @@ import { DashboardComponent } from '../components/dashboard/DashboardComponent/i
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { LandingPage } from '../components/landing_page/LandingPage/LandingPage';
 import { LoginPage } from '../components/landing_page/LoginPage/index';
+import { SignupPage } from '../components/landing_page/SignupPage/index';
 const App: React.FC = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={() => <LandingPage />} />
         <Route exact path="/login" component={() => <LoginPage />} />
         <Route exact path="/dashboard" component={() => <DashboardComponent />} />
+        <Route exact path="/signup" component={() => <SignupPage />} />
       </Router>
     </>
   );

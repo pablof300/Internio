@@ -8,6 +8,28 @@
   } ],
   "schemes" : [ "http" ],
   "paths" : {
+    "/auth/verify" : {
+      "get" : {
+        "tags" : [ "auth" ],
+        "summary" : "Verify a JWT token",
+        "description" : "",
+        "operationId" : "verifyJWT",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
     "/auth/sign" : {
       "get" : {
         "tags" : [ "auth" ],
@@ -35,34 +57,13 @@
         }
       }
     },
-    "/auth/verify" : {
-      "get" : {
-        "tags" : [ "auth" ],
-        "summary" : "Verify a JWT token",
-        "description" : "",
-        "operationId" : "verifyJWT",
-        "parameters" : [ {
-          "name" : "token",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          }
-        }
-      }
-    },
     "/internio/user" : {
       "get" : {
         "tags" : [ "internio" ],
         "summary" : "Getting user info",
         "description" : "",
         "operationId" : "getUser",
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "username",
           "in" : "query",
@@ -75,6 +76,66 @@
             "schema" : {
               "$ref" : "#/definitions/User"
             }
+          }
+        }
+      }
+    },
+    "/internio/addInternship" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Adding an internship to a User",
+        "description" : "",
+        "operationId" : "addInternshipToUser",
+        "parameters" : [ {
+          "name" : "locationCity",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "locationState",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startDate",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "company",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/data" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "load data",
+        "description" : "",
+        "operationId" : "loadData",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
           }
         }
       }

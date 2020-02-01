@@ -3,10 +3,8 @@ package me.pabloestrada.api;
 import com.google.inject.Inject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import me.pabloestrada.core.user.User;
-
 import me.pabloestrada.core.internship.InternshipInfo;
-
+import me.pabloestrada.core.user.User;
 import java.util.Date;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -38,7 +36,6 @@ public class InternioRestMethods
     @ApiOperation(value = "Adding an internship to a User")
     @Path("/addInternship")
     public void addInternshipToUser(
-      @QueryParam("internship") final InternshipInfo internship,
       @QueryParam("locationCity") final String locationCity,
       @QueryParam("locationState") final String locationState,
       @QueryParam("startDate") final Date startDate,
