@@ -27,18 +27,22 @@ public final class User
 
     @JsonProperty(required = true)
     private UserPreferences preferences;
+
+    @JsonProperty(required = true)
+    private String email;
+
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password , String email) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.id = new ObjectId();
         this.settings= new UserSettings();
         this.internships = new ArrayList<>();
         this.preferences = new UserPreferences();
     }
-
     public String getUsername() {
         return username;
     }
@@ -75,6 +79,10 @@ public final class User
         }
         return null;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { email = email; }
 
     public void setInternships(List<InternshipInfo> internships) {
         this.internships = internships;

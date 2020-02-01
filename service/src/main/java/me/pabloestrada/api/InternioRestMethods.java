@@ -56,4 +56,11 @@ public class InternioRestMethods
     public void loadData() {
         delegate.loadData();
     }
+
+    @GET
+    @ApiOperation(value = "Create user")
+    @Path("/createuser")
+    public void createUser(@QueryParam("username") final String username, @QueryParam("password") final String password, @QueryParam("email") final String email) {
+        delegate.createUser(username, password, email);
+    }
 }
