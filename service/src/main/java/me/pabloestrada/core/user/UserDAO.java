@@ -39,11 +39,11 @@ public final class UserDAO
         return getUser(username).map(user -> user.getPassword().equals(password)).orElse(false);
     }
 
-    public boolean insertUser(final String username, final String password) {
+    public boolean insertUser(final String username, final String password, final String email) {
         if (collection.find(eq("username", username)).first() != null) {
             return false;
         }
-        collection.insertOne(new User(username, password));
+        collection.insertOne(new User(username, password, email));
         return true;
     }
 
@@ -58,7 +58,7 @@ public final class UserDAO
     public Optional<User> getUser(final String username) {
         return Optional.ofNullable(collection.find(eq("username", username)).first());
     }
-    public ArrayList<User> getAllUser() {
+    public ArrayList<User> getAllUsers() {
         ArrayList<User> allUsers = new ArrayList<>();
 //        collection.find(new Document()).forEach(user -> {});
         return null;
