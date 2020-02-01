@@ -1,6 +1,7 @@
 me.pabloestrada
 me.pabloestrada.api
 me.pabloestrada.api.impl
+me.pabloestrada.api.impl.authentication
 me.pabloestrada.core.authentication
 me.pabloestrada.core.user
 me.pabloestrada.credentials

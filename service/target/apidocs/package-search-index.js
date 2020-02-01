@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"me.pabloestrada"},{"l":"me.pabloestrada.api"},{"l":"me.pabloestrada.api.impl"},{"l":"me.pabloestrada.core.authentication"},{"l":"me.pabloestrada.core.user"},{"l":"me.pabloestrada.credentials"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"me.pabloestrada"},{"l":"me.pabloestrada.api"},{"l":"me.pabloestrada.api.impl"},{"l":"me.pabloestrada.api.impl.authentication"},{"l":"me.pabloestrada.core.authentication"},{"l":"me.pabloestrada.core.user"},{"l":"me.pabloestrada.credentials"}]

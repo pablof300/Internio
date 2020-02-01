@@ -13,7 +13,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 public final class UserDAO
 {
-    private final static String DATABASE_NAME = "persian";
+    private final static String DATABASE_NAME = "internio";
     private final static String USER_COLLECTION_NAME = "users";
 
     private final MongoCollection<User> collection;

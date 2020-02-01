@@ -8,7 +8,9 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import me.pabloestrada.api.AuthenticationServiceRestMethods;
 import me.pabloestrada.api.InternioRestMethods;
+import me.pabloestrada.api.impl.authentication.AuthenticationServiceImpl;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
@@ -48,8 +50,10 @@ public class InternioApplication
 
         final Injector injector = Guice.createInjector(new InternioModule());
         final InternioRestMethods api = injector.getInstance(InternioRestMethods.class);
+        final AuthenticationServiceRestMethods auth = injector.getInstance(AuthenticationServiceRestMethods.class);
 
         environment.jersey().register(api);
+        environment.jersey().register(auth);
     }
 
     @Override

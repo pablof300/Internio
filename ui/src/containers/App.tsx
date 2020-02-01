@@ -12,6 +12,7 @@ const App: React.FC = () => {
       <Router>
         <Route exact path="/" component={() => <LandingPage />} />
         <Route exact path="/login" component={() => <LoginPage />} />
+        <Route exact path="/dashboard" component={() => <DashboardComponent />} />
       </Router>
     </>
   );
