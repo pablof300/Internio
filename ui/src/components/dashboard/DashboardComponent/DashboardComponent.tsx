@@ -1,42 +1,63 @@
-import React from 'react';
-import styles from './DashboardComponent.module.css'
-import { Grid, Image } from 'semantic-ui-react'
+import React from "react";
+import styles from "./DashboardComponent.module.css";
+import {
+  Grid,
+  Image,
+  Accordion,
+  Icon,
+  Sidebar,
+  Menu,
+  Segment,
+  Header
+} from "semantic-ui-react";
 
-interface Props {
-}
+interface Props {}
 
-interface State {
-}
+interface State {}
 
 export class DashboardComponent extends React.Component<{}, {}> {
-
   constructor(props: {}) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
       <>
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Image src='/images/wireframe/paragraph.png' />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Image src='/images/wireframe/paragraph.png' />
-          </Grid.Column>
-        </Grid.Row>
+        <Menu
+          as={Menu}
+          borderless
+          visible={true}
+          vertical
+          inverted
+          className={styles.Sidebar}
+        >
+          <Menu.Item name="home" onClick={() => {}}>
+            <Icon name="home" />
+            <span>Home</span>
+          </Menu.Item>
+          <Menu.Item name="users" onClick={() => {}}>
+            <Icon name="users" />
+            <span>Roommates</span>
+          </Menu.Item>
+          <Menu.Item name="repos" onClick={() => {}}>
+            <Icon name="fork" />
+            <span>Account</span>
+          </Menu.Item>
+          <Menu.Item name="repos" onClick={() => {}}>
+            <Icon name="fork" />
+            <span>Logout</span>
+          </Menu.Item>
+        </Menu>
+        <Segment
+          textAlign="center"
+          basic
+          className={styles.Container}
+          >
+          <Segment className={styles.InnerContainer} stacked>
 
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Image src='/images/wireframe/paragraph.png' />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Image src='/images/wireframe/paragraph.png' />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          </Segment>
+        </Segment>
       </>
-    )
+    );
   }
 }
