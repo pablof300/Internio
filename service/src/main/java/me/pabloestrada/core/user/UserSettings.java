@@ -4,21 +4,21 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
-public final class InternshipInfo
+public final class UserSettings
 {
     private String username;
     private String password;
     private ObjectId id;
 
-    public InternshipInfo() {
+    public UserSettings() {
     }
 
-    public User(String username, String password) {
+    public UserSettings(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, boolean generateId) {
+    public Setting(String username, String password, boolean generateId) {
         this.username = username;
         this.password = password;
         this.id = new ObjectId();

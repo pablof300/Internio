@@ -9,7 +9,9 @@ public final class User
     private String username;
     private String password;
     private ObjectId id;
-
+    private InternshipInfo internship;
+    private UserSettings settings;
+    private UserPrefrences prefrences;
     public User() {
     }
 
