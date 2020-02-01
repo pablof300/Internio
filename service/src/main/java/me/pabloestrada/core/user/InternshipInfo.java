@@ -1,8 +1,6 @@
 package me.pabloestrada.core.user;
 
-import org.bson.types.ObjectId;
-
-import java.util.Objects;
+import java.util.Date;
 
 public final class InternshipInfo
 {
@@ -12,32 +10,30 @@ public final class InternshipInfo
     private Date endDate;
     private String company;
 
-
-
     public InternshipInfo() {
     }
 
-    public InternshipInfo(String  locationCity, String locationState, int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay) {
+    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate) {
         this.locationCity = locationCity;
         this.locationState = locationState;
-        startDate = new Date(startDate, startMonth, startDay);
-        endDate = new Date(endDate, endMonth, endDay);
+        this.startDate = startDate;
+        this.endDate = endDate;
 
     }
 
-    public String getCity() {
+    public String getLocationCity() {
         return locationCity;
     }
 
-    public void setCity(String locationCity) {
+    public void setLocationCity(String locationCity) {
         this.locationCity = locationCity;
     }
 
-    public String getState() {
+    public String getLocationState() {
         return locationState;
     }
 
-    public void setState(String locationState) {
+    public void setLocationState(String locationState) {
         this.locationState = locationState;
     }
 
@@ -45,23 +41,23 @@ public final class InternshipInfo
         return startDate;
     }
 
-    public void setStartDate(int startYear, int startMonth, int startDay) {
-        this.startDate = new Date(startYear, startMonth, startDate);
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(int endYear, int endMonth, int endDay) {
-        this.endDate = new Date(endYear, endMonth, endDate);
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getCompany() {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(String company) {
         this.company = company;
     }
 }

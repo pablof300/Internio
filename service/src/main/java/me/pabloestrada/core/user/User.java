@@ -11,7 +11,7 @@ public final class User
     private ObjectId id;
     private InternshipInfo internship;
     private UserSettings settings;
-    private UserPrefrences prefrences;
+    private UserPreferences preferences;
     public User() {
     }
 
@@ -67,12 +67,12 @@ public final class User
         this.settings = settings;
     }
 
-    public UserPrefrences getUserPrefrences() {
-        return prefrences;
+    public UserPreferences getUserPrefrences() {
+        return preferences;
     }
 
-    public void setUserPrefrences(UserPrefrences prefrences) {
-        this.prefrences = prefrences;
+    public void setUserPrefrences(UserPreferences prefrences) {
+        this.preferences = prefrences;
     }
 
     @Override
