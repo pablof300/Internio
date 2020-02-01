@@ -1,4 +1,4 @@
-package me.pabloestrada.core.user;
+package me.pabloestrada.core.internship;
 
 import java.util.Date;
 

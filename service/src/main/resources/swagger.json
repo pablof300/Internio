@@ -4,32 +4,10 @@
   "tags" : [ {
     "name" : "auth"
   }, {
-    "name" : "Internio"
+    "name" : "internio"
   } ],
   "schemes" : [ "http" ],
   "paths" : {
-    "/auth/verify" : {
-      "get" : {
-        "tags" : [ "auth" ],
-        "summary" : "Verify a JWT token",
-        "description" : "",
-        "operationId" : "verifyJWT",
-        "parameters" : [ {
-          "name" : "token",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "boolean"
-            }
-          }
-        }
-      }
-    },
     "/auth/sign" : {
       "get" : {
         "tags" : [ "auth" ],
@@ -57,13 +35,18 @@
         }
       }
     },
-    "/Internio/dev" : {
+    "/auth/verify" : {
       "get" : {
-        "tags" : [ "Internio" ],
-        "summary" : "Getting developer name",
+        "tags" : [ "auth" ],
+        "summary" : "Verify a JWT token",
         "description" : "",
-        "operationId" : "getDeveloperName",
-        "parameters" : [ ],
+        "operationId" : "verifyJWT",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -71,6 +54,129 @@
               "type" : "string"
             }
           }
+        }
+      }
+    },
+    "/internio/user" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "Getting user info",
+        "description" : "",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "InternshipInfo" : {
+      "type" : "object",
+      "properties" : {
+        "locationCity" : {
+          "type" : "string"
+        },
+        "locationState" : {
+          "type" : "string"
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "endDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "company" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ObjectId" : {
+      "type" : "object",
+      "properties" : {
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "counter" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "time" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "machineIdentifier" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "processIdentifier" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "timeSecond" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "required" : [ "id", "internships", "password", "preferences", "settings", "username" ],
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "id" : {
+          "$ref" : "#/definitions/ObjectId"
+        },
+        "internships" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InternshipInfo"
+          }
+        },
+        "settings" : {
+          "$ref" : "#/definitions/UserSettings"
+        },
+        "preferences" : {
+          "$ref" : "#/definitions/UserPreferences"
+        }
+      }
+    },
+    "UserPreferences" : {
+      "type" : "object",
+      "properties" : {
+        "smoker" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "UserSettings" : {
+      "type" : "object",
+      "properties" : {
+        "dateFlexibilityRangeInDays" : {
+          "type" : "integer",
+          "format" : "int32"
         }
       }
     }

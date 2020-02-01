@@ -21,7 +21,10 @@ public final class UserDAO
     public UserDAO() {
         final CodecRegistry userCodecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
-                CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+                CodecRegistries.fromProviders(PojoCodecProvider
+                        .builder()
+                        .automatic(true)
+                        .build()));
         final MongoClientSettings settings = MongoClientSettings.builder()
                 .codecRegistry(userCodecRegistry)
                 .build();

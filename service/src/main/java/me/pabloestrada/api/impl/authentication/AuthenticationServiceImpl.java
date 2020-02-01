@@ -22,7 +22,12 @@ public final class AuthenticationServiceImpl
     }
 
     @Override
-    public boolean verifyJWT(final String token) {
-        return userAuthenticator.verifyJWT(token).isPresent();
+    public String verifyJWT(final String token) {
+        Optional<String> verified = userAuthenticator.verifyJWT(token);
+        if (verified.isPresent()) {
+            return verified.get();
+        } else {
+            return "INVALID";
+        }
     }
 }

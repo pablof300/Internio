@@ -6,6 +6,7 @@
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/InternioApplication.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/api/InternioService.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/api/AuthenticationServiceRestMethods.java
+/Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/core/internship/InternshipInfo.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/InternioModule.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/core/user/User.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/api/AuthenticationService.java
@@ -13,4 +14,3 @@
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/credentials/CredentialsHelper.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/api/impl/authentication/AuthenticationServiceImpl.java
 /Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/core/user/UserDAO.java
-/Users/pabloestrada/Desktop/Internio/service/src/main/java/me/pabloestrada/core/user/InternshipInfo.java

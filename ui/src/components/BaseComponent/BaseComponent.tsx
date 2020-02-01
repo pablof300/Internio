@@ -19,14 +19,14 @@ export class BaseComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = { count: 0, developerName: "" }
-    this.getDeveloperName = this.getDeveloperName.bind(this);
-    this.getDeveloperName()
+    // this.getDeveloperName = this.getDeveloperName.bind(this);
+    // this.getDeveloperName()
   }
 
   async getDeveloperName() {
-    this.api.getDeveloperName().then(devName => {
-      this.setState({ developerName: devName })
-    })
+    // this.api.getDeveloperName().then(devName => {
+      // this.setState({ developerName: devName })
+    // })
   }
 
   render() {

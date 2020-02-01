@@ -54,6 +54,8 @@ private authApi: AuthApi = new AuthApi()
     this.authApi
       .getJWT(requestParams)
       .then(token => {
+        console.log("Authenticated user:")
+        console.log(token)
         Cookies.set("jwt", token)
         this.setState({ redirect: true })
       })

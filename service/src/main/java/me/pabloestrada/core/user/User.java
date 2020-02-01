@@ -1,16 +1,31 @@
 package me.pabloestrada.core.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import me.pabloestrada.core.internship.InternshipInfo;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public final class User
 {
+    @JsonProperty(required = true)
     private String username;
+
+    @JsonProperty(required = true)
     private String password;
+
+    @JsonProperty(required = true)
     private ObjectId id;
-    private InternshipInfo internship;
+
+    @JsonProperty(required = true)
+    private List<InternshipInfo> internships;
+
+    @JsonProperty(required = true)
     private UserSettings settings;
+
+    @JsonProperty(required = true)
     private UserPreferences preferences;
     public User() {
     }
@@ -18,13 +33,10 @@ public final class User
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public User(String username, String password, boolean generateId) {
-        this.username = username;
-        this.password = password;
         this.id = new ObjectId();
         this.settings= new UserSettings();
+        this.internships = new ArrayList<>();
+        this.preferences = new UserPreferences();
     }
 
     public String getUsername() {
@@ -51,51 +63,27 @@ public final class User
         this.id = id;
     }
 
-    public InternshipInfo getInternshipInfo() {
-        return internship;
+    public List<InternshipInfo> getInternships() {
+        return internships;
     }
 
-    public void setInternshipInfo(InternshipInfo internship) {
-        this.internship = internship;
+    public void setInternships(List<InternshipInfo> internships) {
+        this.internships = internships;
     }
 
-    public UserSettings getUserSettings() {
+    public UserSettings getSettings() {
         return settings;
     }
 
-    public void getUserSettings(UserSettings settings) {
+    public void setSettings(UserSettings settings) {
         this.settings = settings;
     }
 
-    public UserPreferences getUserPrefrences() {
+    public UserPreferences getPreferences() {
         return preferences;
     }
 
-    public void setUserPrefrences(UserPreferences prefrences) {
-        this.preferences = prefrences;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, password, id);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
-                '}';
+    public void setPreferences(UserPreferences preferences) {
+        this.preferences = preferences;
     }
 }

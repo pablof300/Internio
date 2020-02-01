@@ -1,6 +1,8 @@
 package me.pabloestrada.api;
 
+import me.pabloestrada.core.user.User;
+
 public abstract class InternioService
 {
-    public abstract String getDeveloperName();
+    public abstract User getUser(final String username);
 }

@@ -66,7 +66,7 @@ export class AuthApi extends runtime.BaseAPI {
     /**
      * Verify a JWT token
      */
-    async verifyJWTRaw(requestParameters: VerifyJWTRequest): Promise<runtime.ApiResponse<boolean>> {
+    async verifyJWTRaw(requestParameters: VerifyJWTRequest): Promise<runtime.ApiResponse<string>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.token !== undefined) {
@@ -88,7 +88,7 @@ export class AuthApi extends runtime.BaseAPI {
     /**
      * Verify a JWT token
      */
-    async verifyJWT(requestParameters: VerifyJWTRequest): Promise<boolean> {
+    async verifyJWT(requestParameters: VerifyJWTRequest): Promise<string> {
         const response = await this.verifyJWTRaw(requestParameters);
         return await response.value();
     }

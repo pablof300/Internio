@@ -42,10 +42,10 @@ public final class AuthenticationServiceRestMethods
     @GET
     @ApiOperation(value = "Verify a JWT token")
     @Path("/verify")
-    public boolean verifyJWT(@QueryParam("token") final String token, @Context final HttpServletResponse response) {
+    public String verifyJWT(@QueryParam("token") final String token, @Context final HttpServletResponse response) {
         if (token == null) {
             sendError(Response.Status.BAD_REQUEST,"Invalid parameters (missing token)", response);
-            return false;
+            return "INVALID";
         }
         return delegate.verifyJWT(token);
     }

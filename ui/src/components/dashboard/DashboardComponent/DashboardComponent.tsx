@@ -1,5 +1,10 @@
 import React from "react";
 import styles from "./DashboardComponent.module.css";
+import { AuthApi } from "../../../api/index"
+import { InternioApi } from "../../../api/index"
+import Cookies from "js-cookie"
+import { Redirect } from "react-router-dom"
+import { User } from "../../../api/index"
 import {
   Grid,
   Image,
@@ -13,14 +18,49 @@ import {
 
 interface Props {}
 
-interface State {}
+interface State {
+  authenticated: Boolean,
+  loading: Boolean
+  // user: User
+}
 
-export class DashboardComponent extends React.Component<{}, {}> {
+export class DashboardComponent extends React.Component<{}, State> {
+  private authApi: AuthApi = new AuthApi()
+  private internioApi: InternioApi = new InternioApi()
+
   constructor(props: {}) {
     super(props);
+    this.state = {
+      authenticated: false,
+      loading: true,
+      // user: new User()
+    }
   }
 
+  componentDidMount() {
+  const token = Cookies.get("jwt")
+  if (token) {
+    const requestParams = { token: token }
+    console.log("Found JWT token, veryfing...")
+    this.authApi.verifyJWT(requestParams).then(verified => {
+      this.internioApi.getUser({username: verified}).then(user => {
+        console.log(user)
+        this.setState({ authenticated: verified != "INVALID", loading: false})
+      })
+    })
+  } else {
+    console.log("No JWT token available")
+    this.setState({ authenticated: false, loading: false })
+  }
+}
+
   render() {
+    // if (this.state.loading) {
+    //   return <> </>
+    // }
+    // if (!this.state.authenticated) {
+    //   return <Redirect to="/login" />
+    // }
     return (
       <>
         <Menu
