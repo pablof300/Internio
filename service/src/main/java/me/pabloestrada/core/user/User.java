@@ -35,7 +35,7 @@ public final class User
         this.password = password;
         this.id = new ObjectId();
         this.settings= new UserSettings();
-        this.internships = new ArrayList<>();
+        this.internships = new ArrayList<InternshipInfo>();
         this.preferences = new UserPreferences();
     }
 
@@ -70,6 +70,8 @@ public final class User
     public void setInternships(List<InternshipInfo> internships) {
         this.internships = internships;
     }
+
+    public void addInternship(InternshipInfo internships) { this.internships.add(internships); }
 
     public UserSettings getSettings() {
         return settings;

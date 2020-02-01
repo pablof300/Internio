@@ -1,23 +1,24 @@
-package me.pabloestrada.core.internship;
+package me.pabloestrada.core.user;
 
 import java.util.Date;
 
-public final class InternshipInfo
-{
+public final class InternshipInfo {
     private String locationCity;
     private String locationState;
     private Date startDate;
     private Date endDate;
     private String company;
 
+
     public InternshipInfo() {
     }
 
-    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate) {
+    public InternshipInfo(Date startDate, Date endDate , String locationCity, String locationState, String company) {
         this.locationCity = locationCity;
         this.locationState = locationState;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.company = company;
 
     }
 
@@ -61,3 +62,4 @@ public final class InternshipInfo
         this.company = company;
     }
 }
+

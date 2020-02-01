@@ -1,17 +1,30 @@
 package me.pabloestrada.core.user;
 
-public final class UserPreferences
+
+public final class UserPrefrences
 {
-    private boolean isSmoker;
 
-    public UserPreferences() {
+
+    private int [] questionResponses = new int[10];
+
+    public UserPrefrences() {
     }
 
-    public boolean isSmoker() {
-        return isSmoker;
+    public UserPrefrences(int [] questionResponses) {
+        this.questionResponses = questionResponses;
+    }
+    public int[] getAllQuestionResponses() {
+        return questionResponses;
     }
 
-    public void setSmoker(boolean smoker) {
-        isSmoker = smoker;
+    public void setAllQuestionResponses(int[] questionResponses) {
+        this.questionResponses = questionResponses;
+    }
+    public int getAQuestionResponses(int questionNum) {
+        return questionResponses[questionNum];
+    }
+
+    public void setAQuestionResponses(int questionNum , int questionResponse) {
+        questionResponses[questionNum]= questionResponse;
     }
 }
