@@ -1,11 +1,13 @@
 package me.pabloestrada.api;
 
+import me.pabloestrada.core.internship.InternshipInfo;
 import me.pabloestrada.core.neighborhood.Neighborhood;
 import me.pabloestrada.core.user.User;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class InternioService {
     public abstract User getUser(final String username);
@@ -25,4 +27,6 @@ public abstract class InternioService {
     public abstract void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity);
 
     public abstract void createUser(String username, String password, String email, String linkedin, String facebook, String instagram, int age, String nameLast, String nameFirst, String bio, int[] responses);
+
+    public abstract ArrayList<User> getRoommates(InternshipInfo internship);
 }

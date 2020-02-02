@@ -1,6 +1,7 @@
 package me.pabloestrada.core.internship;
 
 import me.pabloestrada.core.neighborhood.Neighborhood;
+import me.pabloestrada.core.user.User;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public final class InternshipInfo
     private String company;
     private ObjectId id;
     private ArrayList<Neighborhood> neighborhoods;
+    private ArrayList<User> savedRoommates;
 
     public InternshipInfo() {
     }
@@ -26,6 +28,7 @@ public final class InternshipInfo
         this.endDate = endDate;
         this.neighborhoods= new ArrayList<Neighborhood>();
         this.id = new ObjectId();
+        this.savedRoommates = new ArrayList<User>();
     }
 
     public String getLocationCity() {
@@ -75,11 +78,13 @@ public final class InternshipInfo
     public void removeAllNeighborhoods() {
         this.neighborhoods = new ArrayList<Neighborhood>();
     }
+
     public void addOneNeighborhood(Neighborhood neighborhood) {
         this.neighborhoods.add(neighborhood);
     }
+
     public void removeOneNeighborhoods(Neighborhood neighborhood) {
-        for(int i=0; i>neighborhoods.size();i++ ){
+        for(int i=0; i < neighborhoods.size(); i++){
             if(neighborhood.equals(neighborhoods.get(i))){
                 neighborhoods.remove(i);
                 return;
@@ -90,4 +95,25 @@ public final class InternshipInfo
     public ObjectId getId() { return id; }
 
     public void setId(ObjectId id) { this.id = id; }
+
+    public ArrayList<User> getSavedRoommates() {
+        return savedRoommates;
+    }
+
+    public void setSavedRoommates(ArrayList<User> savedRoommmates) {
+        this.savedRoommates = savedRoommmates;
+    }
+
+    public void saveARoommate(User savedRoommate) {
+        this.savedRoommates.add(savedRoommate);
+    }
+
+    public void removeARoommate(User savedRoommate) {
+        for(int i = 0; i < savedRoommates.size(); i++) {
+            if(savedRoommate.getUsername().equals(savedRoommates.get(i).getUsername())) {
+                savedRoommates.remove(i);
+                return;
+            }
+        }
+    }
 }

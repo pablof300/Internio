@@ -66,4 +66,12 @@ public final class Neighborhood
     public void setMetropolitan(String metropolitan) {
         this.metropolitan = metropolitan;
     }
+
+    public boolean compareWith(Neighborhood o) {
+        if(this.neighborhoodName == o.neighborhoodName && this.city == o.city && this.state == o.state) {
+            return true;
+        } else { 
+            return false;
+        }
+    }
 }
