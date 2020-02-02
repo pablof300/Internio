@@ -11,10 +11,10 @@ import java.util.ArrayList;
 public class MatchingMakingServiceImpl extends MatchmakingService {
 
     public ArrayList<User> getPotentialMatches(String username, ObjectId internshipId) {
+
         UserDAO DB = new UserDAO();
         User Current = DB.getUser(username).get();
-        InternshipInfo CurrentInternship= null;
-//        InternshipInfo CurrentInternship= Current.getInternshipInfo(internshipId);
+        InternshipInfo CurrentInternship= Current.getInternshipInfo(internshipId);
         ArrayList<User> AllUsers = DB.getAllUsers();
         for (int i = 0; i < AllUsers.size(); i++) {
             //remove roomates who are not within a 1week range of your internship
@@ -32,9 +32,9 @@ public class MatchingMakingServiceImpl extends MatchmakingService {
                 boolean NotFound= true;
                 for(int k=0; k<AllUsers.get(i).getInternships().get(j).getNeighborhoods().size();k++){
                     for( int z=0; z<CurrentInternship.getNeighborhoods().size();z++){
-//                        if(CurrentInternship.getNeighborhoods().get(z).compareWith(AllUsers.get(i).getInternships().get(j).getNeighborhoods())){
-//                            NotFound = false;
-//                        }
+                        if(CurrentInternship.getNeighborhoods().get(z).compareWith(AllUsers.get(i).getInternships().get(j).getNeighborhoods().get(k))){
+                            NotFound = false;
+                        }
                     }
                 }
                 if(NotFound){

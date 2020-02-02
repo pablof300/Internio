@@ -139,10 +139,10 @@ public class InternioRestMethods
         delegate.updatePreferences(getUser(username),responses);
     }
 
-    @GET
-    @ApiOperation(value = "Get Roommates")
-    @Path("/getRoommates")
-    public ArrayList<User> getRoommates(@QueryParam("internship") final InternshipInfo internship) {
-        return delegate.getRoommates(internship);
-    }
+//    @GET
+//    @ApiOperation(value = "Get Roommates")
+//    @Path("/getRoommates")
+//    public ArrayList<User> getRoommates(@QueryParam("internship") final InternshipInfo internship) {
+//        return delegate.getRoommates(internship);
+//    }
 }
