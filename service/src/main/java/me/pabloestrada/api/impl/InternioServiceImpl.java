@@ -40,10 +40,21 @@ public class InternioServiceImpl extends InternioService
         InternshipInfo newInternship = new InternshipInfo( locationCity, locationState, startDate, endDate );
         List<InternshipInfo> list = user.getInternships();
         list.add(newInternship);
-        user.setInternships(list);
+        userDAO.addInternship(user, list);
     }
     public void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity ) {
-
+       int count =-1;
+        for(int i=0;i<user.getInternships().size();i++) {
+            if(user.getInternships().get(i).getId().equals(InternshipId)){
+                count =i;
+                user.getInternships().get(i).addOneNeighborhood(locationCity);
+            }
+        }
+        if(count==-1){
+            System.out.println("ERROR: Bogus Object ID in InternioServiceIMPL addneighborhoodtointernship method");
+            return;
+        }
+        userDAO.addInternship(user,user.getInternships());
     }
     public List<Neighborhood> getNeighborhoods(String locationCity){
        return neighborhoodHolder.getNeighborhoodsByCity().get(locationCity);
@@ -60,5 +71,8 @@ public class InternioServiceImpl extends InternioService
 
     public void createUser(final String username, final String password, final String email){
         userDAO.insertUser(new User(username, password, email));
+    }
+    public void createUser(String username, String password, String email,String linkedin, String facebook, String instagram,int age,String nameLast,String nameFirst,String bio,int [] responses){
+        userDAO.insertUser(new User(username, password, email,linkedin, facebook, instagram, age, nameLast,nameFirst,bio, responses));
     }
 }
