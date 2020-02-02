@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class InternioServiceImpl extends InternioService
 {
@@ -59,6 +60,7 @@ public class InternioServiceImpl extends InternioService
     public List<Neighborhood> getNeighborhoods(String locationCity){
        return neighborhoodHolder.getNeighborhoodsByCity().get(locationCity);
     }
+
     public void updatePreferences(User user, int [] responses ) {
         UserPreferences preferences = new UserPreferences( responses );
         user.setPreferences(preferences);
@@ -74,5 +76,9 @@ public class InternioServiceImpl extends InternioService
     }
     public void createUser(String username, String password, String email,String linkedin, String facebook, String instagram,int age,String nameLast,String nameFirst,String bio,int [] responses){
         userDAO.insertUser(new User(username, password, email,linkedin, facebook, instagram, age, nameLast,nameFirst,bio, responses));
+    }
+
+    public ArrayList<User> getRoommates(InternshipInfo internship) {
+        return internship.getSavedRoommates();
     }
 }

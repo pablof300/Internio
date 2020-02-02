@@ -10,6 +10,7 @@ import me.pabloestrada.core.user.User;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -77,6 +78,7 @@ public class InternioRestMethods
     public void loadData() {
         delegate.loadData();
     }
+
     @POST
     @ApiOperation(value = "Create Ultimate user")
     @Path("/createFullUser")
@@ -134,5 +136,12 @@ public class InternioRestMethods
             @QueryParam("Q10 Response") int R10) {
         int responses[]={R1,R2,R3,R4,R5,R6,R7,R8,R9,R10};
         delegate.updatePreferences(getUser(username),responses);
+    }
+
+    @GET
+    @ApiOperation(value = "Get Roommates")
+    @Path("/getRoommates")
+    public ArrayList<User> getRoommates(@QueryParam("internship") final InternshipInfo internship) {
+        return delegate.getRoommates(internship);
     }
 }
