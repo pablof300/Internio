@@ -55,7 +55,7 @@ public class InternioRestMethods
 
     @POST
     @ApiOperation(value = "Adding a Neighborhood to an Internship")
-    @Path("/addInternship")
+    @Path("/addNeighborhoodToInternship")
     public void addNeighborhoodToInternship(
             @QueryParam("neighborhoodName") final String neighborhoodName,
             @QueryParam("city") final String cityName,
@@ -63,9 +63,9 @@ public class InternioRestMethods
 
     }
     @GET
-    @ApiOperation(value = "Adding an internship to a User")
+    @ApiOperation(value = "getting list of neighborhoods in a city")
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/addInternship")
+    @Path("/getneighborhoods")
     public List<Neighborhood> getNeighborhoods(
             @QueryParam("locationCity") final String locationCity){
         return delegate.getNeighborhoods(locationCity);
@@ -77,7 +77,34 @@ public class InternioRestMethods
     public void loadData() {
         delegate.loadData();
     }
-
+    @POST
+    @ApiOperation(value = "Create Ultimate user")
+    @Path("/createultimateuser")
+    public void createUser(
+            @QueryParam("username") final String username,
+            @QueryParam("firstname") final String firstname,
+            @QueryParam("lastname") final String lastname,
+            @QueryParam("email") final String email,
+            @QueryParam("password") final String password,
+            @QueryParam("email") final int age,
+            @QueryParam("Q1") final int R1,
+            @QueryParam("Q2") final int R2,
+            @QueryParam("Q3") final int R3,
+            @QueryParam("Q4") final int R4,
+            @QueryParam("Q5") final int R5,
+            @QueryParam("Q6") final int R6,
+            @QueryParam("Q7") final int R7,
+            @QueryParam("Q8") final int R8,
+            @QueryParam("Q9") final int R9,
+            @QueryParam("Q10") final int R10,
+            @QueryParam("linkedin") final String linkedin,
+            @QueryParam("instagram") final String instagram,
+            @QueryParam("facebook") final String facebook,
+            @QueryParam("bio") final String bio
+    ) {
+        int responses[]={R1,R2,R3,R4,R5,R6,R7,R8,R9,R10};
+        delegate.createUser(username, password, email,linkedin,facebook,instagram,age,lastname,firstname,bio,responses);
+    }
     @POST
     @ApiOperation(value = "Create user")
     @Path("/createuser")

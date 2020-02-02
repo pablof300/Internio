@@ -52,6 +52,9 @@ public final class User
     @JsonProperty(required = true)
     private String bio;
 
+    @JsonProperty(required = true)
+    private List<User> FavoritedUsers;
+
     public User() {
     }
 
@@ -62,6 +65,24 @@ public final class User
         this.settings= new UserSettings();
         this.internships = new ArrayList<>();
         this.preferences = new UserPreferences();
+    }
+    public User(String username, String password, String email,String linkedin, String facebook, String instagram,int age,String nameLast,String nameFirst,String bio,int [] responses) {
+
+            this.username = username;
+        this.password = password;
+        this.id = new ObjectId();
+        this.settings= new UserSettings();
+        this.internships = new ArrayList<>();
+        this.preferences = new UserPreferences();
+        UserPreferences preferences = new UserPreferences(responses);
+        this.linkedin = linkedin;
+        this.facebook= facebook;
+        this.instagram=instagram;
+        this.age=age;
+        this.nameLast=nameLast;
+        this.nameFirst=nameFirst;
+        this.bio=bio;
+
     }
 
     public String getUsername() {

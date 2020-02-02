@@ -24,5 +24,5 @@ public abstract class InternioService
     public abstract List<Neighborhood> getNeighborhoods(String locationCity);
 
     public abstract void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity );
-    
-}
+
+    public abstract void createUser(String username, String password, String email,String linkedin, String facebook, String instagram,int age,String nameLast,String nameFirst,String bio,int [] responses);
