@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import styles from './LandingPage.module.css'
 import { Redirect } from 'react-router-dom';
-import Logo from '../../../assets/logo.png';
+import Logo from '../../../assets/logo2.png';
 
 interface State {
   login: Boolean;
@@ -31,18 +31,12 @@ export class LandingPage extends React.Component<{}, State> {
           <Grid.Row>
             <Segment textAlign = "center" style={{marginBottom: "5vh"}} very padded stacked >
               <img src={Logo} style={{height: "15vh"}} />
-              <Header as='h1' textAlign='center'>
-                Internio
-              </Header>
-            </Segment>
-          </Grid.Row>
-          <Grid.Row>
-            <Segment textAlign = "center" style={{marginBottom: "5vh"}} very padded stacked >
-              <p>
-              Find your perfect roommate match. Get suggestions. Get resources for finding housing for your internship. 
+              <p className={styles.Padding}>
+              Find your perfect roommate match. Get suggestions. Get resources for finding housing for your internship.
               </p>
             </Segment>
           </Grid.Row>
+
             <Grid.Row>
               <Segment very padded stacked >
                 <Button.Group fluid>

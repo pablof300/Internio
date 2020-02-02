@@ -8,14 +8,15 @@ import java.io.IOException;
 
 public final class NeighborhoodHolder {
 
-    private ArrayList<Neighborhood> allNeighborhoods;
-    private HashMap<String, ArrayList<Neighborhood>> neighborhoodsByCity;
+    private ArrayList<Neighborhood> allNeighborhoods = new ArrayList<>();
+    private HashMap<String, ArrayList<Neighborhood>> neighborhoodsByCity = new HashMap<>();
     private String cvsFile = "src/main/java/me/pabloestrada/core/neighborhood/Neighborhood_InventoryMeasure_Neighborhood_Public.csv";
 
     public NeighborhoodHolder() {
         try(BufferedReader read = new BufferedReader(new FileReader(cvsFile))) {
-            String temp = "";
+            String temp = read.readLine();
             while((temp = read.readLine()) != null) {
+                temp = temp.replace("\"", "").toLowerCase();
                 String[] neighborhoodInfo = temp.split(",");
                 allNeighborhoods.add(new Neighborhood(neighborhoodInfo));
             }
@@ -24,11 +25,7 @@ public final class NeighborhoodHolder {
         }
         buildMap();
     }
-
-    public static void main(String[] args) {
-
-    }
-
+    
     private void buildMap() {
         for(int i = 0; i < allNeighborhoods.size(); i++)
         {
@@ -40,5 +37,29 @@ public final class NeighborhoodHolder {
                 neighborhoodsByCity.get(allNeighborhoods.get(i).getCity()).add(allNeighborhoods.get(i));
             }
         }
+    }
+
+    public ArrayList<Neighborhood> getAllNeighborhoods() {
+        return allNeighborhoods;
+    }
+
+    public void setAllNeighborhoods(ArrayList<Neighborhood> allNeighborhoods) {
+        this.allNeighborhoods = allNeighborhoods;
+    }
+
+    public HashMap<String, ArrayList<Neighborhood>> getNeighborhoodsByCity() {
+        return neighborhoodsByCity;
+    }
+
+    public void setNeighborhoodsByCity(HashMap<String, ArrayList<Neighborhood>> neighborhoodsByCity) {
+        this.neighborhoodsByCity = neighborhoodsByCity;
+    }
+
+    public String getCvsFile() {
+        return cvsFile;
+    }
+
+    public void setCvsFile(String cvsFile) {
+        this.cvsFile = cvsFile;
     }
 }

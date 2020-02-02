@@ -11,6 +11,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import me.pabloestrada.api.AuthenticationServiceRestMethods;
 import me.pabloestrada.api.InternioRestMethods;
 import me.pabloestrada.api.impl.authentication.AuthenticationServiceImpl;
+import me.pabloestrada.core.neighborhood.NeighborhoodHolder;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
