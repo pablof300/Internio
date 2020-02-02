@@ -4,9 +4,9 @@ import { AuthApi } from "../../../api/index";
 import { InternioApi } from "../../../api/index";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router-dom";
-import { User } from "../../../api/index";
-import Datetime from 'react-datetime';
-import * as moment from 'moment';
+import { User, Neighborhood, ObjectId, InternshipInfo } from "../../../api/index";
+import Datetime from "react-datetime";
+import * as moment from "moment";
 
 import "../../../../node_modules/react-datetime/css/react-datetime.css";
 
@@ -31,15 +31,22 @@ interface Props {}
 interface State {
   authenticated: Boolean;
   loading: Boolean;
+  start: Boolean;
   addingNewInternship: Boolean;
+
+  neighborhoodStage: Boolean;
+  neighborhoods: Neighborhood[];
+
   user?: User;
+
+  current?: InternshipInfo;
 
   // Create InternshipInfo
   company: string;
   city: string;
   state: string;
-  startDate?: Number;
-  endDate?: Number;
+  startDate?: number;
+  endDate?: number;
 }
 
 export class DashboardComponent extends React.Component<{}, State> {
@@ -51,7 +58,10 @@ export class DashboardComponent extends React.Component<{}, State> {
     this.state = {
       authenticated: false,
       loading: true,
+      start: true,
       addingNewInternship: false,
+      neighborhoodStage: false,
+      neighborhoods: [],
 
       company: "",
       city: "",
@@ -63,28 +73,50 @@ export class DashboardComponent extends React.Component<{}, State> {
     this.setCity = this.setCity.bind(this);
     this.setStartDate = this.setStartDate.bind(this);
     this.setEndDate = this.setEndDate.bind(this);
+    this.setStateLocation = this.setStateLocation.bind(this);
     this.submitNewInternship = this.submitNewInternship.bind(this);
   }
 
-  submitNewInternship(e : React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault()
-    this.internioApi.addInternshipToUser({
-      locationCity: this.state.city,
-      locationState: this.state.state,
-      startDate: new Date(this.state.startDate),
-      endDate: new Date(this.state.endDate)
-    }).then(() => {
+  submitNewInternship(e: any) {
+    e.preventDefault();
+    console.log("GOING!!!");
+    console.log(this.state.city);
+    console.log(this.state.state);
+    console.log(this.state.startDate);
+    console.log(this.state.endDate);
+    console.log(this.state.user);
 
-    })
+    if (this.state.user != null) {
+      this.internioApi
+        .addInternshipToUser({
+          locationCity: this.state.city,
+          locationState: this.state.state,
+          startDate: this.state.startDate,
+          endDate: this.state.endDate,
+          username: this.state.user.username
+        })
+        .then((info) => {
+          console.log("Setting current city");
+          console.log(info.locationCity);
+          console.log(info);
+          this.setState({current: info, neighborhoodStage: true})
+
+          this.internioApi
+          .getNeighborhoods({locationCity: info.locationCity})
+          .then((neighborhoods) => {
+            this.setState({neighborhoods: neighborhoods})
+          })
+        });
+    }
   }
 
   setStartDate(e: string | moment.Moment) {
-    let date = e as moment.Moment
+    let date = e as moment.Moment;
     this.setState({ startDate: date.unix() });
   }
 
   setEndDate(e: string | moment.Moment) {
-    let date = e as moment.Moment
+    let date = e as moment.Moment;
     this.setState({ endDate: date.unix() });
   }
 
@@ -92,13 +124,18 @@ export class DashboardComponent extends React.Component<{}, State> {
     this.setState({ city: e.target.value });
   }
 
+  setStateLocation(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ state: e.target.value });
+  }
+
   setCompany(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ company: e.target.value });
   }
 
   addNewInternship() {
-    this.setState({ addingNewInternship: true });
+    this.setState({ addingNewInternship: true, start: false });
   }
+
 
   componentDidMount() {
     const token = Cookies.get("jwt");
@@ -107,11 +144,12 @@ export class DashboardComponent extends React.Component<{}, State> {
       console.log("Found JWT token, veryfing...");
       this.authApi.verifyJWT(requestParams).then(verified => {
         this.internioApi.getUser({ username: verified }).then(user => {
-          this.setState({
-            authenticated: verified != "INVALID",
-            loading: false,
-            user: user
-          });
+            this.setState({
+              authenticated: verified != "INVALID",
+              loading: false,
+              user: user,
+              addingNewInternship: user.internships.length == 0
+            });
         });
       });
     } else {
@@ -128,8 +166,10 @@ export class DashboardComponent extends React.Component<{}, State> {
       return <Redirect to="/login" />;
     }
     if (this.state.user != null) {
-      let username: string = this.state.user.nameFirst
+      let username: string = this.state.user.nameFirst;
     }
+
+    console.log(this.state.neighborhoods.length)
     return (
       <>
         <Menu
@@ -142,9 +182,7 @@ export class DashboardComponent extends React.Component<{}, State> {
         >
           <Menu.Item name="home" onClick={() => {}}>
             <Icon name="home" />
-            { this.state.user != null &&
-                this.state.user.nameFirst
-            }
+            {this.state.user != null && this.state.user.nameFirst}
           </Menu.Item>
           <Menu.Item name="users" onClick={() => {}}>
             <Icon name="users" />
@@ -162,7 +200,7 @@ export class DashboardComponent extends React.Component<{}, State> {
         <Segment textAlign="center" basic className={styles.Container}>
           <Segment padded="very" className={styles.InnerContainer} stacked>
             <Grid verticalAlign="middle" centered>
-              {this.state.addingNewInternship && (
+              {this.state.addingNewInternship && !this.state.start && (
                 <Segment raised className={styles.NewTwo}>
                   <Form>
                     <Form.Field
@@ -173,11 +211,11 @@ export class DashboardComponent extends React.Component<{}, State> {
                     />
                     <Form.Field>
                       <label>City</label>
-                      <input placeholder="City" />
+                      <Input placeholder="City" onChange={this.setCity} />
                     </Form.Field>
                     <Form.Field>
                       <label>State</label>
-                      <input placeholder="State" />
+                      <Input placeholder="State" onChange={this.setStateLocation} />
                     </Form.Field>
                     <label>
                       <strong>Start date</strong>
@@ -190,16 +228,31 @@ export class DashboardComponent extends React.Component<{}, State> {
                     </label>
                     <Datetime onChange={this.setEndDate} />
 
-                    <Button primary className={styles.Button} onChange={this.submitNewInternship}>
+                    <Button
+                      primary
+                      className={styles.Button}
+                      onClick={this.submitNewInternship}
+                    >
                       Submit
                     </Button>
                   </Form>
                 </Segment>
               )}
 
-              {!this.state.addingNewInternship &&
-                this.state.user != null &&
-                this.state.user.internships.length == 0 && (
+              {this.state.neighborhoodStage && this.state.neighborhoods.length == 0 &&
+                  <p>Loading neighborhoods</p>
+              }
+
+              {this.state.neighborhoodStage && this.state.neighborhoods.length != 0 &&
+                <>
+                  {this.state.neighborhoods.map((value, index) => {
+                    return <p>{value.neighborhoodName}</p>
+                  })}
+                </>
+              }
+
+              { this.state.addingNewInternship &&
+                this.state.start && (
                   <Segment raised className={styles.New}>
                     <Header as="h2" icon>
                       <Icon name="settings" />

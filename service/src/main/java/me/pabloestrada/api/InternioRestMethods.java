@@ -39,8 +39,9 @@ public class InternioRestMethods
 
     @POST
     @ApiOperation(value = "Adding an internship to a User")
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/addInternship")
-    public void addInternshipToUser(
+    public InternshipInfo addInternshipToUser(
       @QueryParam("locationCity") final String locationCity,
       @QueryParam("locationState") final String locationState,
       @QueryParam("startDate") final long startDate,
@@ -50,7 +51,7 @@ public class InternioRestMethods
 
         //username is unique, query it in DB to find the specific User
         // use the User object that we find, and use the add method (we will make) within User class to modify our InternshipInfo
-        delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company);
+        return delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company);
     }
 
     @POST

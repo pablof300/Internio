@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    InternshipInfo,
+    InternshipInfoFromJSON,
+    InternshipInfoToJSON,
     Neighborhood,
     NeighborhoodFromJSON,
     NeighborhoodToJSON,
@@ -102,7 +105,7 @@ export class InternioApi extends runtime.BaseAPI {
     /**
      * Adding an internship to a User
      */
-    async addInternshipToUserRaw(requestParameters: AddInternshipToUserRequest): Promise<runtime.ApiResponse<void>> {
+    async addInternshipToUserRaw(requestParameters: AddInternshipToUserRequest): Promise<runtime.ApiResponse<InternshipInfo>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.locationCity !== undefined) {
@@ -138,14 +141,15 @@ export class InternioApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => InternshipInfoFromJSON(jsonValue));
     }
 
     /**
      * Adding an internship to a User
      */
-    async addInternshipToUser(requestParameters: AddInternshipToUserRequest): Promise<void> {
-        await this.addInternshipToUserRaw(requestParameters);
+    async addInternshipToUser(requestParameters: AddInternshipToUserRequest): Promise<InternshipInfo> {
+        const response = await this.addInternshipToUserRaw(requestParameters);
+        return await response.value();
     }
 
     /**
