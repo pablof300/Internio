@@ -10,6 +10,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import me.pabloestrada.api.AuthenticationServiceRestMethods;
 import me.pabloestrada.api.InternioRestMethods;
+import me.pabloestrada.api.MatchMakingServiceRestMethods;
 import me.pabloestrada.api.impl.authentication.AuthenticationServiceImpl;
 import me.pabloestrada.core.neighborhood.NeighborhoodHolder;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
@@ -52,9 +53,11 @@ public class InternioApplication
         final Injector injector = Guice.createInjector(new InternioModule());
         final InternioRestMethods api = injector.getInstance(InternioRestMethods.class);
         final AuthenticationServiceRestMethods auth = injector.getInstance(AuthenticationServiceRestMethods.class);
+        final MatchMakingServiceRestMethods match = injector.getInstance(MatchMakingServiceRestMethods.class);
 
         environment.jersey().register(api);
         environment.jersey().register(auth);
+        environment.jersey().register(match);
     }
 
     @Override
