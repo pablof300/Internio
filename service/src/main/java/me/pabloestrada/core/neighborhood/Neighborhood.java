@@ -21,10 +21,10 @@ public final class Neighborhood
 
     public Neighborhood(String[] neighborhoodInfo) {
         this.neighborhoodName = neighborhoodInfo[0];
-        this.city = neighborhoodInfo[1];
-        this.metropolitan = neighborhoodInfo[2];
+        this.city = neighborhoodInfo[2];
+        this.metropolitan = neighborhoodInfo[4];
         this.county = neighborhoodInfo[3];
-        this.state = neighborhoodInfo[4];
+        this.state = neighborhoodInfo[5];
     }
 
     public String getNeighborhoodName() {

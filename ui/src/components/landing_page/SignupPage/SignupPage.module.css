@@ -1,3 +1,7 @@
 .Grid {
   height: 100vh;
 }
+
+.Spacer {
+  margin-bottom: 2vh !important;
+}
