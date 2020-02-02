@@ -38,8 +38,8 @@ public class InternioServiceImpl extends InternioService
         userDAO.insertUser(user);
     }
 
-    public InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company ) {
-        InternshipInfo newInternship = new InternshipInfo( locationCity, locationState, startDate, endDate );
+    public InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company, int budget ) {
+        InternshipInfo newInternship = new InternshipInfo(locationCity, locationState, startDate, endDate, budget);
         List<InternshipInfo> list = user.getInternships();
         list.add(newInternship);
         userDAO.addInternship(user, list);

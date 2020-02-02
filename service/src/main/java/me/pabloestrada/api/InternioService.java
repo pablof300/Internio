@@ -14,7 +14,7 @@ public abstract class InternioService {
 
     public abstract void loadData();
 
-    public abstract InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company);
+    public abstract InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company, int budget );
 
     public abstract void createUser(String username, String password, String email);
 

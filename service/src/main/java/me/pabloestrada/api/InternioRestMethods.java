@@ -47,11 +47,12 @@ public class InternioRestMethods
       @QueryParam("startDate") final long startDate,
       @QueryParam("endDate") final long endDate,
       @QueryParam("company") final String company,
-      @QueryParam("username") final String username) {
+      @QueryParam("username") final String username,
+      @QueryParam("budget") final int budget) {
 
         //username is unique, query it in DB to find the specific User
         // use the User object that we find, and use the add method (we will make) within User class to modify our InternshipInfo
-        return delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company);
+        return delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company, budget );
     }
 
     @POST
