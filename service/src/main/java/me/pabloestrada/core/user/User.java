@@ -184,4 +184,13 @@ public final class User
     public void setNameFirst(String nameFirst) {
         this.nameFirst = nameFirst;
     }
+
+    public InternshipInfo getInternshipInfo(ObjectId id) {
+        for(int i = 0; i < internships.size(); i++) {
+            if(id.equals(internships.get(i).getId())) {
+                return internships.get(i);
+            }
+        }
+        return null;
+    }
 }
