@@ -3,12 +3,14 @@ package me.pabloestrada.core.user;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import me.pabloestrada.core.internship.InternshipInfo;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.codecs.configuration.CodecRegistries;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -75,4 +77,10 @@ public final class UserDAO
         return allUsers;
 
     }
+
+    public void addInternship(User user, List<InternshipInfo> list) {
+        collection.updateOne(eq("username", user.getUsername()),set("internships", list));
+    }
+
+
 }
