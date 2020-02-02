@@ -57,157 +57,13 @@
         }
       }
     },
-    "/internio/data" : {
-      "get" : {
-        "tags" : [ "internio" ],
-        "summary" : "load data",
-        "description" : "",
-        "operationId" : "loadData",
-        "parameters" : [ ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
-    "/internio/createuser" : {
-      "post" : {
-        "tags" : [ "internio" ],
-        "summary" : "Create user",
-        "description" : "",
-        "operationId" : "createUser",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "password",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "email",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
-    "/internio/UpdateFacebook" : {
-      "post" : {
-        "tags" : [ "internio" ],
-        "summary" : "Updating Facebook",
-        "description" : "",
-        "operationId" : "updateFacebook",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "facebook link",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
-    "/internio/getneighborhoods" : {
-      "get" : {
-        "tags" : [ "internio" ],
-        "summary" : "getting list of neighborhoods in a city",
-        "description" : "",
-        "operationId" : "getNeighborhoods",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "locationCity",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Neighborhood"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/internio/addNeighborhoodToInternship" : {
-      "post" : {
-        "tags" : [ "internio" ],
-        "summary" : "Adding a Neighborhood to an Internship",
-        "description" : "",
-        "operationId" : "addNeighborhoodToInternship",
-        "parameters" : [ {
-          "name" : "neighborhoodName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "city",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "username",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
-    "/internio/user" : {
-      "get" : {
-        "tags" : [ "internio" ],
-        "summary" : "Getting user info",
-        "description" : "",
-        "operationId" : "getUser",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/User"
-            }
-          }
-        }
-      }
-    },
     "/internio/addInternship" : {
       "post" : {
         "tags" : [ "internio" ],
         "summary" : "Adding an internship to a User",
         "description" : "",
         "operationId" : "addInternshipToUser",
+        "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "locationCity",
           "in" : "query",
@@ -222,14 +78,14 @@
           "name" : "startDate",
           "in" : "query",
           "required" : false,
-          "type" : "string",
-          "format" : "date-time"
+          "type" : "integer",
+          "format" : "int64"
         }, {
           "name" : "endDate",
           "in" : "query",
           "required" : false,
-          "type" : "string",
-          "format" : "date-time"
+          "type" : "integer",
+          "format" : "int64"
         }, {
           "name" : "company",
           "in" : "query",
@@ -242,8 +98,11 @@
           "type" : "string"
         } ],
         "responses" : {
-          "default" : {
-            "description" : "successful operation"
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/InternshipInfo"
+            }
           }
         }
       }
@@ -451,29 +310,154 @@
           }
         }
       }
-    }
-  },
-  "definitions" : {
-    "Neighborhood" : {
-      "type" : "object",
-      "properties" : {
-        "neighborhoodName" : {
+    },
+    "/internio/user" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "Getting user info",
+        "description" : "",
+        "operationId" : "getUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
           "type" : "string"
-        },
-        "city" : {
-          "type" : "string"
-        },
-        "county" : {
-          "type" : "string"
-        },
-        "state" : {
-          "type" : "string"
-        },
-        "metropolitan" : {
-          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          }
         }
       }
     },
+    "/internio/data" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "load data",
+        "description" : "",
+        "operationId" : "loadData",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/createuser" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Create user",
+        "description" : "",
+        "operationId" : "createUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/UpdateFacebook" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Updating Facebook",
+        "description" : "",
+        "operationId" : "updateFacebook",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "facebook link",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/getneighborhoods" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "getting list of neighborhoods in a city",
+        "description" : "",
+        "operationId" : "getNeighborhoods",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "locationCity",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Neighborhood"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internio/addNeighborhoodToInternship" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Adding a Neighborhood to an Internship",
+        "description" : "",
+        "operationId" : "addNeighborhoodToInternship",
+        "parameters" : [ {
+          "name" : "neighborhoodName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "city",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
     "InternshipInfo" : {
       "type" : "object",
       "properties" : {
@@ -502,6 +486,26 @@
           "items" : {
             "$ref" : "#/definitions/Neighborhood"
           }
+        }
+      }
+    },
+    "Neighborhood" : {
+      "type" : "object",
+      "properties" : {
+        "neighborhoodName" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "county" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "metropolitan" : {
+          "type" : "string"
         }
       }
     },

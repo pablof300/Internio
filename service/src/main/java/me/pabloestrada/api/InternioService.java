@@ -1,5 +1,6 @@
 package me.pabloestrada.api;
 
+import me.pabloestrada.core.internship.InternshipInfo;
 import me.pabloestrada.core.neighborhood.Neighborhood;
 import me.pabloestrada.core.user.User;
 import org.bson.types.ObjectId;
@@ -12,7 +13,7 @@ public abstract class InternioService {
 
     public abstract void loadData();
 
-    public abstract void addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company);
+    public abstract InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company);
 
     public abstract void createUser(String username, String password, String email);
 

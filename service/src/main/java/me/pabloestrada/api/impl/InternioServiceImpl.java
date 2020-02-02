@@ -27,6 +27,7 @@ public class InternioServiceImpl extends InternioService
     }
 
     public User getUser(final String username) {
+        System.out.println("#### Getting " + username);
         return userDAO.getUser(username).get();
     }
 
@@ -36,11 +37,12 @@ public class InternioServiceImpl extends InternioService
         userDAO.insertUser(user);
     }
 
-    public void addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company ) {
+    public InternshipInfo addInternship(User user, String locationCity, String locationState, Date startDate, Date endDate, String company ) {
         InternshipInfo newInternship = new InternshipInfo( locationCity, locationState, startDate, endDate );
         List<InternshipInfo> list = user.getInternships();
         list.add(newInternship);
         userDAO.addInternship(user, list);
+        return newInternship;
     }
     public void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity ) {
        int count =-1;
@@ -57,7 +59,7 @@ public class InternioServiceImpl extends InternioService
         userDAO.addInternship(user,user.getInternships());
     }
     public List<Neighborhood> getNeighborhoods(String locationCity){
-       return neighborhoodHolder.getNeighborhoodsByCity().get(locationCity);
+       return neighborhoodHolder.getNeighborhoodsByCity().get(locationCity.toLowerCase());
     }
     public void updatePreferences(User user, int [] responses ) {
         UserPreferences preferences = new UserPreferences( responses );
