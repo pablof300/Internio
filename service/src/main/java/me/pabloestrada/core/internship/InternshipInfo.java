@@ -1,7 +1,9 @@
 package me.pabloestrada.core.internship;
 
+import me.pabloestrada.core.neighborhood.Neighborhood;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public final class InternshipInfo
@@ -12,6 +14,7 @@ public final class InternshipInfo
     private Date endDate;
     private String company;
     private ObjectId id;
+    private ArrayList<Neighborhood> neighborhoods;
 
     public InternshipInfo() {
     }
@@ -21,7 +24,8 @@ public final class InternshipInfo
         this.locationState = locationState;
         this.startDate = startDate;
         this.endDate = endDate;
-
+        this.neighborhoods= new ArrayList<Neighborhood>();
+        this.id = new ObjectId();
     }
 
     public String getLocationCity() {
@@ -62,6 +66,25 @@ public final class InternshipInfo
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public ArrayList<Neighborhood> getNeighborhoods() {
+        return neighborhoods;
+    }
+
+    public void removeAllNeighborhoods() {
+        this.neighborhoods = new ArrayList<Neighborhood>();
+    }
+    public void addOneNeighborhood(Neighborhood neighborhood) {
+        this.neighborhoods.add(neighborhood);
+    }
+    public void removeOneNeighborhoods(Neighborhood neighborhood) {
+        for(int i=0; i>neighborhoods.size();i++ ){
+            if(neighborhood.equals(neighborhoods.get(i))){
+                neighborhoods.remove(i);
+                return;
+            }
+        }
     }
 
     public ObjectId getId() { return id; }
