@@ -27,6 +27,28 @@ public final class User
 
     @JsonProperty(required = true)
     private UserPreferences preferences;
+
+    @JsonProperty(required = true)
+    private String linkedin;
+
+    @JsonProperty(required = true)
+    private String facebook;
+
+    @JsonProperty(required = true)
+    private String instagram;
+
+    @JsonProperty(required = true)
+    private int age;
+
+    @JsonProperty(required = true)
+    private String nameLast;
+
+    @JsonProperty(required = true)
+    private String nameFirst;
+
+    @JsonProperty(required = true)
+    private String bio;
+
     public User() {
     }
 
@@ -85,5 +107,61 @@ public final class User
 
     public void setPreferences(UserPreferences preferences) {
         this.preferences = preferences;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(Sttring facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getNameLast() {
+        return nameLast;
+    }
+
+    public void setNameLast(String nameLast) {
+        this.nameLast = nameLast;
+    }
+
+    public String getNameFirst() {
+        return nameFirst;
+    }
+
+    public void setNameFirst(String nameFirst) {
+        this.nameFirst = nameFirst;
     }
 }
