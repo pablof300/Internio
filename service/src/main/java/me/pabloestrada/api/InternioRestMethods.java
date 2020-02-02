@@ -52,7 +52,7 @@ public class InternioRestMethods
 
         //username is unique, query it in DB to find the specific User
         // use the User object that we find, and use the add method (we will make) within User class to modify our InternshipInfo
-        return delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company, budget);
+        return delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company, budget );
     }
 
     @POST

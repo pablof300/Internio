@@ -22,7 +22,7 @@ public final class InternshipInfo
     public InternshipInfo() {
     }
 
-    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate, int budget) {
+    public InternshipInfo(String locationCity, String locationState, Date startDate, Date endDate, int budget) {
         this.locationCity = locationCity;
         this.locationState = locationState;
         this.startDate = startDate;
