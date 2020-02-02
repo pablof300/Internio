@@ -13,6 +13,17 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    Neighborhood,
+    NeighborhoodFromJSON,
+    NeighborhoodFromJSONTyped,
+    NeighborhoodToJSON,
+    ObjectId,
+    ObjectIdFromJSON,
+    ObjectIdFromJSONTyped,
+    ObjectIdToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -49,6 +60,18 @@ export interface InternshipInfo {
      * @memberof InternshipInfo
      */
     company?: string;
+    /**
+     * 
+     * @type {ObjectId}
+     * @memberof InternshipInfo
+     */
+    id?: ObjectId;
+    /**
+     * 
+     * @type {Array<Neighborhood>}
+     * @memberof InternshipInfo
+     */
+    neighborhoods?: Array<Neighborhood>;
 }
 
 export function InternshipInfoFromJSON(json: any): InternshipInfo {
@@ -66,6 +89,8 @@ export function InternshipInfoFromJSONTyped(json: any, ignoreDiscriminator: bool
         'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
         'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
         'company': !exists(json, 'company') ? undefined : json['company'],
+        'id': !exists(json, 'id') ? undefined : ObjectIdFromJSON(json['id']),
+        'neighborhoods': !exists(json, 'neighborhoods') ? undefined : ((json['neighborhoods'] as Array<any>).map(NeighborhoodFromJSON)),
     };
 }
 
@@ -83,6 +108,8 @@ export function InternshipInfoToJSON(value?: InternshipInfo | null): any {
         'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
         'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString()),
         'company': value.company,
+        'id': ObjectIdToJSON(value.id),
+        'neighborhoods': value.neighborhoods === undefined ? undefined : ((value.neighborhoods as Array<any>).map(NeighborhoodToJSON)),
     };
 }
 

@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface UserPreferences {
     /**
      * 
-     * @type {boolean}
+     * @type {Array<number>}
      * @memberof UserPreferences
      */
-    smoker?: boolean;
+    questionResponses?: Array<number>;
 }
 
 export function UserPreferencesFromJSON(json: any): UserPreferences {
@@ -37,7 +37,7 @@ export function UserPreferencesFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'smoker': !exists(json, 'smoker') ? undefined : json['smoker'],
+        'questionResponses': !exists(json, 'questionResponses') ? undefined : json['questionResponses'],
     };
 }
 
@@ -50,7 +50,7 @@ export function UserPreferencesToJSON(value?: UserPreferences | null): any {
     }
     return {
         
-        'smoker': value.smoker,
+        'questionResponses': value.questionResponses,
     };
 }
 

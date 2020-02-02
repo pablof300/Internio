@@ -42,15 +42,14 @@ public class InternioRestMethods
     public void addInternshipToUser(
       @QueryParam("locationCity") final String locationCity,
       @QueryParam("locationState") final String locationState,
-      @QueryParam("startDate") final Date startDate,
-      @QueryParam("endDate") final Date endDate,
+      @QueryParam("startDate") final long startDate,
+      @QueryParam("endDate") final long endDate,
       @QueryParam("company") final String company,
       @QueryParam("username") final String username) {
 
         //username is unique, query it in DB to find the specific User
         // use the User object that we find, and use the add method (we will make) within User class to modify our InternshipInfo
-
-        delegate.addInternship(delegate.getUser(username), locationCity, locationState, startDate, endDate, company);
+        delegate.addInternship(delegate.getUser(username), locationCity, locationState, new Date(startDate), new Date(endDate), company);
     }
 
     @POST
@@ -62,6 +61,7 @@ public class InternioRestMethods
             @QueryParam("username") final String userName){
 
     }
+
     @GET
     @ApiOperation(value = "getting list of neighborhoods in a city")
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,14 +79,14 @@ public class InternioRestMethods
     }
     @POST
     @ApiOperation(value = "Create Ultimate user")
-    @Path("/createultimateuser")
-    public void createUser(
+    @Path("/createFullUser")
+    public void createFullUser(
             @QueryParam("username") final String username,
             @QueryParam("firstname") final String firstname,
             @QueryParam("lastname") final String lastname,
             @QueryParam("email") final String email,
             @QueryParam("password") final String password,
-            @QueryParam("email") final int age,
+            @QueryParam("age") final int age,
             @QueryParam("Q1") final int R1,
             @QueryParam("Q2") final int R2,
             @QueryParam("Q3") final int R3,

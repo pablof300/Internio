@@ -52,6 +52,12 @@ export interface User {
     password: string;
     /**
      * 
+     * @type {string}
+     * @memberof User
+     */
+    email: string;
+    /**
+     * 
      * @type {ObjectId}
      * @memberof User
      */
@@ -74,6 +80,48 @@ export interface User {
      * @memberof User
      */
     preferences: UserPreferences;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    linkedin: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    facebook: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    instagram: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof User
+     */
+    age: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    nameLast: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    nameFirst: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    bio: string;
 }
 
 export function UserFromJSON(json: any): User {
@@ -88,10 +136,18 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         
         'username': json['username'],
         'password': json['password'],
+        'email': json['email'],
         'id': ObjectIdFromJSON(json['id']),
         'internships': ((json['internships'] as Array<any>).map(InternshipInfoFromJSON)),
         'settings': UserSettingsFromJSON(json['settings']),
         'preferences': UserPreferencesFromJSON(json['preferences']),
+        'linkedin': json['linkedin'],
+        'facebook': json['facebook'],
+        'instagram': json['instagram'],
+        'age': json['age'],
+        'nameLast': json['nameLast'],
+        'nameFirst': json['nameFirst'],
+        'bio': json['bio'],
     };
 }
 
@@ -106,10 +162,18 @@ export function UserToJSON(value?: User | null): any {
         
         'username': value.username,
         'password': value.password,
+        'email': value.email,
         'id': ObjectIdToJSON(value.id),
         'internships': ((value.internships as Array<any>).map(InternshipInfoToJSON)),
         'settings': UserSettingsToJSON(value.settings),
         'preferences': UserPreferencesToJSON(value.preferences),
+        'linkedin': value.linkedin,
+        'facebook': value.facebook,
+        'instagram': value.instagram,
+        'age': value.age,
+        'nameLast': value.nameLast,
+        'nameFirst': value.nameFirst,
+        'bio': value.bio,
     };
 }
 

@@ -17,6 +17,9 @@ import {
 } from "semantic-ui-react";
 import styles from "./SignupPage.module.css";
 import Logo from "../../../assets/logo.png";
+import Cookies from "js-cookie"
+import { InternioApi } from "../../../api/index"
+import { AuthApi } from "../../../api/index"
 
 interface State {
   stage1: Boolean;
@@ -29,18 +32,18 @@ interface State {
   lastName: string;
   email: string;
   password: string;
-  age: Number;
+  age: number;
 
-  q1: Number;
-  q2: Number;
-  q3: Number;
-  q4: Number;
-  q5: Number;
-  q6: Number;
-  q7: Number;
-  q8: Number;
-  q9: Number;
-  q10: Number;
+  q1: number;
+  q2: number;
+  q3: number;
+  q4: number;
+  q5: number;
+  q6: number;
+  q7: number;
+  q8: number;
+  q9: number;
+  q10: number;
 
   facebook: string;
   linkedin: string;
@@ -50,6 +53,9 @@ interface State {
 }
 
 export class SignupPage extends React.Component<{}, State> {
+  private api: InternioApi = new InternioApi()
+  private authApi: AuthApi = new AuthApi()
+
   constructor(props: {}) {
     super(props);
     this.setFirstName = this.setFirstName.bind(this);
@@ -58,6 +64,7 @@ export class SignupPage extends React.Component<{}, State> {
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.MoveToStageTwo = this.MoveToStageTwo.bind(this);
+    this.submit = this.submit.bind(this);
 
     this.state = {
       stage1: true,
@@ -108,6 +115,61 @@ export class SignupPage extends React.Component<{}, State> {
 
   setUsername(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ username: e.target.value });
+  }
+
+  submit(e: any) {
+    this.api
+      .createFullUser(
+
+        {
+            username: this.state.username,
+            firstname: this.state.firstName,
+            lastname: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            age: this.state.age,
+            q1: this.state.q1,
+            q2: this.state.q2,
+            q3: this.state.q3,
+            q4: this.state.q4,
+            q5: this.state.q5,
+            q6: this.state.q6,
+            q7: this.state.q7,
+            q8: this.state.q8,
+            q9: this.state.q9,
+            q10: this.state.q10,
+            linkedin: this.state.linkedin,
+            instagram: this.state.instagram,
+            facebook: this.state.facebook,
+            bio: this.state.bio
+        }
+
+      )
+      .then(() => {
+        this.getJWT()
+      })
+      .catch(e => {
+        alert("Failed to create new user")
+        console.log("FAILED!!!")
+      })
+  }
+
+  async getJWT() {
+    const requestParams = {
+      username: this.state.username,
+      password: this.state.password
+    }
+    this.authApi
+      .getJWT(requestParams)
+      .then(token => {
+        console.log("Authenticated user:")
+        console.log(token)
+        Cookies.set("jwt", token)
+        this.setState({ stage1: true, stage2: true, stage3: true, stage4: true })
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 
   MoveToStageTwo() {
@@ -573,14 +635,7 @@ export class SignupPage extends React.Component<{}, State> {
                   </Form>
                   <Divider hidden />
                   <Button
-                    onClick={(e: any) => {
-                      this.setState({
-                        stage4: true,
-                        stage3: true,
-                        stage2: true,
-                        stage1: true
-                      });
-                    }}
+                    onClick={this.submit}
                     color="blue"
                   >
                     Finish!

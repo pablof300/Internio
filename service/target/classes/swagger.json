@@ -57,6 +57,128 @@
         }
       }
     },
+    "/internio/data" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "load data",
+        "description" : "",
+        "operationId" : "loadData",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/createuser" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Create user",
+        "description" : "",
+        "operationId" : "createUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/UpdateFacebook" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Updating Facebook",
+        "description" : "",
+        "operationId" : "updateFacebook",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "facebook link",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/getneighborhoods" : {
+      "get" : {
+        "tags" : [ "internio" ],
+        "summary" : "getting list of neighborhoods in a city",
+        "description" : "",
+        "operationId" : "getNeighborhoods",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "locationCity",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Neighborhood"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internio/addNeighborhoodToInternship" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Adding a Neighborhood to an Internship",
+        "description" : "",
+        "operationId" : "addNeighborhoodToInternship",
+        "parameters" : [ {
+          "name" : "neighborhoodName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "city",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
     "/internio/user" : {
       "get" : {
         "tags" : [ "internio" ],
@@ -126,13 +248,203 @@
         }
       }
     },
-    "/internio/data" : {
+    "/internio/createFullUser" : {
+      "post" : {
+        "tags" : [ "internio" ],
+        "summary" : "Create Ultimate user",
+        "description" : "",
+        "operationId" : "createFullUser",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "firstname",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lastname",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "age",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q1",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q2",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q3",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q4",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q5",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q6",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q7",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q8",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q9",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q10",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "linkedin",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "instagram",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "facebook",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "bio",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/internio/updatepreferences" : {
       "get" : {
         "tags" : [ "internio" ],
-        "summary" : "load data",
+        "summary" : "Update preferences",
         "description" : "",
-        "operationId" : "loadData",
-        "parameters" : [ ],
+        "operationId" : "addUserPrefrences",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Q1 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q2 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q3 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q4 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q5 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q6 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q7 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q8 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q9 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "Q10 Response",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
         "responses" : {
           "default" : {
             "description" : "successful operation"
@@ -142,6 +454,26 @@
     }
   },
   "definitions" : {
+    "Neighborhood" : {
+      "type" : "object",
+      "properties" : {
+        "neighborhoodName" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "county" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "metropolitan" : {
+          "type" : "string"
+        }
+      }
+    },
     "InternshipInfo" : {
       "type" : "object",
       "properties" : {
@@ -161,6 +493,15 @@
         },
         "company" : {
           "type" : "string"
+        },
+        "id" : {
+          "$ref" : "#/definitions/ObjectId"
+        },
+        "neighborhoods" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Neighborhood"
+          }
         }
       }
     },
@@ -199,12 +540,15 @@
     },
     "User" : {
       "type" : "object",
-      "required" : [ "id", "internships", "password", "preferences", "settings", "username" ],
+      "required" : [ "age", "bio", "email", "facebook", "id", "instagram", "internships", "linkedin", "nameFirst", "nameLast", "password", "preferences", "settings", "username" ],
       "properties" : {
         "username" : {
           "type" : "string"
         },
         "password" : {
+          "type" : "string"
+        },
+        "email" : {
           "type" : "string"
         },
         "id" : {
@@ -221,14 +565,40 @@
         },
         "preferences" : {
           "$ref" : "#/definitions/UserPreferences"
+        },
+        "linkedin" : {
+          "type" : "string"
+        },
+        "facebook" : {
+          "type" : "string"
+        },
+        "instagram" : {
+          "type" : "string"
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nameLast" : {
+          "type" : "string"
+        },
+        "nameFirst" : {
+          "type" : "string"
+        },
+        "bio" : {
+          "type" : "string"
         }
       }
     },
     "UserPreferences" : {
       "type" : "object",
       "properties" : {
-        "smoker" : {
-          "type" : "boolean"
+        "questionResponses" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
         }
       }
     },

@@ -68,6 +68,14 @@ export class DashboardComponent extends React.Component<{}, State> {
 
   submitNewInternship(e : React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
+    this.internioApi.addInternshipToUser({
+      locationCity: this.state.city,
+      locationState: this.state.state,
+      startDate: new Date(this.state.startDate),
+      endDate: new Date(this.state.endDate)
+    }).then(() => {
+
+    })
   }
 
   setStartDate(e: string | moment.Moment) {
@@ -114,10 +122,13 @@ export class DashboardComponent extends React.Component<{}, State> {
 
   render() {
     if (this.state.loading) {
-      return <> </>;
+      return <></>;
     }
     if (!this.state.authenticated) {
       return <Redirect to="/login" />;
+    }
+    if (this.state.user != null) {
+      let username: string = this.state.user.nameFirst
     }
     return (
       <>
@@ -131,7 +142,9 @@ export class DashboardComponent extends React.Component<{}, State> {
         >
           <Menu.Item name="home" onClick={() => {}}>
             <Icon name="home" />
-            <span>Home</span>
+            { this.state.user != null &&
+                this.state.user.nameFirst
+            }
           </Menu.Item>
           <Menu.Item name="users" onClick={() => {}}>
             <Icon name="users" />

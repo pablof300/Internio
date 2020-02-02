@@ -12,7 +12,7 @@ public class MatchingMakingServiceImpl extends MatchmakingService {
     public ArrayList<User> getPotentialMatches(String username, ObjectId internshipId) {
         UserDAO DB = new UserDAO();
         User Current = DB.getUser(username).get();
-        Current.getInternshipInfo(internshipId);
+//        Current.getInternshipInfo(internshipId);
         ArrayList<User> AllUsers = DB.getAllUsers();
         for (int i = 0; i < AllUsers.size(); i++) {
             //compare times

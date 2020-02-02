@@ -7,8 +7,7 @@ import org.bson.types.ObjectId;
 import java.util.Date;
 import java.util.List;
 
-public abstract class InternioService
-{
+public abstract class InternioService {
     public abstract User getUser(final String username);
 
     public abstract void loadData();
@@ -17,12 +16,13 @@ public abstract class InternioService
 
     public abstract void createUser(String username, String password, String email);
 
-    public abstract void updatePreferences(User user, int [] responses);
+    public abstract void updatePreferences(User user, int[] responses);
 
     public abstract void updateFacebook(final String username, final String facebook);
 
     public abstract List<Neighborhood> getNeighborhoods(String locationCity);
 
-    public abstract void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity );
+    public abstract void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity);
 
-    public abstract void createUser(String username, String password, String email,String linkedin, String facebook, String instagram,int age,String nameLast,String nameFirst,String bio,int [] responses);
+    public abstract void createUser(String username, String password, String email, String linkedin, String facebook, String instagram, int age, String nameLast, String nameFirst, String bio, int[] responses);
+}
