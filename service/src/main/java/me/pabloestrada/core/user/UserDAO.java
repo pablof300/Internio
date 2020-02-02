@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 
 public final class UserDAO
 {
@@ -39,29 +40,39 @@ public final class UserDAO
         return getUser(username).map(user -> user.getPassword().equals(password)).orElse(false);
     }
 
-    public boolean insertUser(final String username, final String password, final String email) {
-        if (collection.find(eq("username", username)).first() != null) {
-            return false;
-        }
-        collection.insertOne(new User(username, password, email));
-        return true;
-    }
-
     public boolean insertUser(final User user) {
         if (collection.find(eq("username", user.getUsername())).first() != null) {
             return false;
         }
+
+//        collection.updateOne(eq("username", user.getUsername()),set("age", 23));
+
         collection.insertOne(user);
         return true;
     }
+    public boolean updateUserAge(final User user , int age) {
+        if (collection.find(eq("username", user.getUsername())).first() != null) {
+            return false;
+        }
 
+       collection.updateOne(eq("username", user.getUsername()),set("age", age));
+        return true;
+    }
+    /*public boolean updateUserAge(final User user , int age) {
+        if (collection.find(eq("username", user.getUsername())).first() != null) {
+            return false;
+        }
+
+        collection.updateOne(eq("username", user.getUsername()),set("age", age));
+        return true;
+    }*/
     public Optional<User> getUser(final String username) {
         return Optional.ofNullable(collection.find(eq("username", username)).first());
     }
     public ArrayList<User> getAllUsers() {
         ArrayList<User> allUsers = new ArrayList<>();
 //        collection.find(new Document()).forEach(user -> {});
-        return null;
+        return allUsers;
 
     }
 }

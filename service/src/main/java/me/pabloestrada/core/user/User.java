@@ -6,7 +6,6 @@ import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public final class User
 {
@@ -17,6 +16,9 @@ public final class User
     private String password;
 
     @JsonProperty(required = true)
+    private String email;
+
+    @JsonProperty(required = true)
     private ObjectId id;
 
     @JsonProperty(required = true)
@@ -25,24 +27,43 @@ public final class User
     @JsonProperty(required = true)
     private UserSettings settings;
 
+
     @JsonProperty(required = true)
     private UserPreferences preferences;
 
     @JsonProperty(required = true)
-    private String email;
+    private String linkedin;
+
+    @JsonProperty(required = true)
+    private String facebook;
+
+    @JsonProperty(required = true)
+    private String instagram;
+
+    @JsonProperty(required = true)
+    private int age;
+
+    @JsonProperty(required = true)
+    private String nameLast;
+
+    @JsonProperty(required = true)
+    private String nameFirst;
+
+    @JsonProperty(required = true)
+    private String bio;
 
     public User() {
     }
 
-    public User(String username, String password , String email) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.email = email;
         this.id = new ObjectId();
         this.settings= new UserSettings();
         this.internships = new ArrayList<>();
         this.preferences = new UserPreferences();
     }
+
     public String getUsername() {
         return username;
     }
@@ -71,19 +92,6 @@ public final class User
         return internships;
     }
 
-    public InternshipInfo getInternshipInfo(ObjectId internshipId){
-        for(int i=0; i<internships.size();i++){
-          if( internships.get(i).getId().equals(internshipId)) {
-              return internships.get(i);
-          }
-        }
-        return null;
-    }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { email = email; }
-
     public void setInternships(List<InternshipInfo> internships) {
         this.internships = internships;
     }
@@ -102,5 +110,61 @@ public final class User
 
     public void setPreferences(UserPreferences preferences) {
         this.preferences = preferences;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin(String linkedin) {
+        this.linkedin = linkedin;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+   public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getNameLast() {
+        return nameLast;
+    }
+
+    public void setNameLast(String nameLast) {
+        this.nameLast = nameLast;
+    }
+
+    public String getNameFirst() {
+        return nameFirst;
+    }
+
+    public void setNameFirst(String nameFirst) {
+        this.nameFirst = nameFirst;
     }
 }
