@@ -33,3 +33,11 @@
 .Spacer {
   margin-top: 1vh !important;
 }
+
+.Cat {
+  width: 60% !important;
+}
+
+.Dog {
+  width: 100% !important;
+}

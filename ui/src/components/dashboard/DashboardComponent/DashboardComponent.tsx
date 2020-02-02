@@ -5,6 +5,7 @@ import { InternioApi } from "../../../api/index";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router-dom";
 import { User, Neighborhood, ObjectId, InternshipInfo } from "../../../api/index";
+import { NeighborhoodComponent } from "../NeighborhoodComponent/index"
 import Datetime from "react-datetime";
 import * as moment from "moment";
 
@@ -23,7 +24,8 @@ import {
   Divider,
   Form,
   Checkbox,
-  Input
+  Input,
+  Card
 } from "semantic-ui-react";
 
 interface Props {}
@@ -99,7 +101,7 @@ export class DashboardComponent extends React.Component<{}, State> {
           console.log("Setting current city");
           console.log(info.locationCity);
           console.log(info);
-          this.setState({current: info, neighborhoodStage: true})
+          this.setState({current: info, neighborhoodStage: true, addingNewInternship: false})
 
           this.internioApi
           .getNeighborhoods({locationCity: info.locationCity})
@@ -159,6 +161,13 @@ export class DashboardComponent extends React.Component<{}, State> {
   }
 
   render() {
+    console.log("Here?")
+    console.log(this.state.neighborhoods.length)
+    console.log(this.state.addingNewInternship)
+    console.log(this.state.neighborhoodStage)
+    console.log("Done??")
+
+
     if (this.state.loading) {
       return <></>;
     }
@@ -168,8 +177,6 @@ export class DashboardComponent extends React.Component<{}, State> {
     if (this.state.user != null) {
       let username: string = this.state.user.nameFirst;
     }
-
-    console.log(this.state.neighborhoods.length)
     return (
       <>
         <Menu
@@ -200,6 +207,29 @@ export class DashboardComponent extends React.Component<{}, State> {
         <Segment textAlign="center" basic className={styles.Container}>
           <Segment padded="very" className={styles.InnerContainer} stacked>
             <Grid verticalAlign="middle" centered>
+              {!this.state.neighborhoodStage && !this.state.addingNewInternship && this.state.user != null && this.state.user.internships.map((value, index) => (
+                <Grid.Row>
+                  <Segment fluid raised color={"purple"} className={styles.Dog}>
+                  <Header as='h2' icon textAlign='center'>
+                    <Icon name='bookmark' circular />
+                    { console.log(value) }
+                    <Header.Content>{value.company} Internship</Header.Content>
+                    <Header.Subheader>
+                      {value.startDate &&
+                        value.startDate.toDateString()
+                      }
+                      -
+                      {value.endDate &&
+                        value.endDate.toDateString()
+                      }
+                    </Header.Subheader>
+                  </Header>
+                  </Segment>
+                </Grid.Row>
+              ))
+
+              }
+
               {this.state.addingNewInternship && !this.state.start && (
                 <Segment raised className={styles.NewTwo}>
                   <Form>
@@ -244,11 +274,12 @@ export class DashboardComponent extends React.Component<{}, State> {
               }
 
               {this.state.neighborhoodStage && this.state.neighborhoods.length != 0 &&
-                <>
-                  {this.state.neighborhoods.map((value, index) => {
-                    return <p>{value.neighborhoodName}</p>
-                  })}
-                </>
+
+                <Card.Group fluid centered color="purple" itemsPerRow={3} className={styles.Cat}>
+                  {this.state.neighborhoods.map((value, index) => (
+                    <NeighborhoodComponent name={value.neighborhoodName as string} state={value.city as string} />
+                  ))}
+                </Card.Group>
               }
 
               { this.state.addingNewInternship &&
