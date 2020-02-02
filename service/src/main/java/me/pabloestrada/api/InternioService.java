@@ -24,5 +24,7 @@ public abstract class InternioService
     public abstract List<Neighborhood> getNeighborhoods(String locationCity);
 
     public abstract void addNeighborhoodToInternship(User user, ObjectId InternshipId, Neighborhood locationCity );
+
+    
     
 }

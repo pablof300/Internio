@@ -12,7 +12,8 @@ import {
   Select,
   Table,
   Checkbox,
-  Divider
+  Divider,
+  TextArea
 } from "semantic-ui-react";
 import styles from "./SignupPage.module.css";
 import Logo from "../../../assets/logo.png";
@@ -20,13 +21,32 @@ import Logo from "../../../assets/logo.png";
 interface State {
   stage1: Boolean;
   stage2: Boolean;
+  stage3: Boolean;
+  stage4: Boolean;
 
   username: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  age: number;
+  age: Number;
+
+  q1: Number;
+  q2: Number;
+  q3: Number;
+  q4: Number;
+  q5: Number;
+  q6: Number;
+  q7: Number;
+  q8: Number;
+  q9: Number;
+  q10: Number;
+
+  facebook: string;
+  linkedin: string;
+  instagram: string;
+
+  bio: string;
 }
 
 export class SignupPage extends React.Component<{}, State> {
@@ -37,19 +57,36 @@ export class SignupPage extends React.Component<{}, State> {
     this.setUsername = this.setUsername.bind(this);
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
-    this.setAge = this.setAge.bind(this);
     this.MoveToStageTwo = this.MoveToStageTwo.bind(this);
 
     this.state = {
       stage1: true,
       stage2: false,
+      stage3: false,
+      stage4: false,
 
       username: "",
       firstName: "",
       lastName: "",
       email: "",
       password: "",
-      age: 0
+      bio: "",
+      age: 0,
+
+      q1: 0,
+      q2: 0,
+      q3: 0,
+      q4: 0,
+      q5: 0,
+      q6: 0,
+      q7: 0,
+      q8: 0,
+      q9: 0,
+      q10: 0,
+
+      facebook: "",
+      instagram: "",
+      linkedin: ""
     };
   }
 
@@ -67,10 +104,6 @@ export class SignupPage extends React.Component<{}, State> {
 
   setPassword(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ password: e.target.value });
-  }
-
-  setAge(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ age: Number(e.target.value) });
   }
 
   setUsername(e: React.ChangeEvent<HTMLInputElement>) {
@@ -183,11 +216,8 @@ export class SignupPage extends React.Component<{}, State> {
 
     const q9 = [
       { text: "Always!", value: 1, key: "1" },
-      ,
       { text: "Often", value: 2, key: "2" },
-      ,
       { text: "Rarely", value: 3, key: "3" },
-      ,
       { text: "Never", value: 4, key: "4" }
     ];
 
@@ -214,6 +244,7 @@ export class SignupPage extends React.Component<{}, State> {
                     icon="user"
                     iconPosition="left"
                     placeholder="Username"
+                    onChange={this.setUsername}
                   />
                   <br />
                   <Form.Input
@@ -221,6 +252,7 @@ export class SignupPage extends React.Component<{}, State> {
                     icon="write"
                     iconPosition="left"
                     placeholder="First name"
+                    onChange={this.setFirstName}
                   />
                   <br />
                   <Form.Input
@@ -228,6 +260,7 @@ export class SignupPage extends React.Component<{}, State> {
                     icon="write"
                     iconPosition="left"
                     placeholder="Last name"
+                    onChange={this.setLastName}
                   />
                   <br />
                   <Form.Input
@@ -235,6 +268,7 @@ export class SignupPage extends React.Component<{}, State> {
                     icon="mail"
                     iconPosition="left"
                     placeholder="Email"
+                    onChange={this.setEmail}
                   />
                   <br />
                   <Form.Input
@@ -243,6 +277,7 @@ export class SignupPage extends React.Component<{}, State> {
                     iconPosition="left"
                     placeholder="Password"
                     type="password"
+                    onChange={this.setPassword}
                   />
                   <br />
                   <Select
@@ -250,6 +285,9 @@ export class SignupPage extends React.Component<{}, State> {
                     placeholder="Select your age"
                     options={ages}
                     className={styles.Spacer}
+                    onChange={(e: any, data: any) => {
+                      this.setState({ age: data.value });
+                    }}
                   />
                   <Button onClick={this.MoveToStageTwo} color="blue">
                     Continue
@@ -274,6 +312,9 @@ export class SignupPage extends React.Component<{}, State> {
                             fluid
                             placeholder="Select your answer"
                             options={q1}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q1: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -289,7 +330,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q2}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q2: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -305,7 +349,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q3}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q3: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -321,7 +368,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q4}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q4: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -337,7 +387,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q5}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q5: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -353,7 +406,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q6}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q6: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -369,7 +425,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q7}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q7: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -385,7 +444,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q8}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q8: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -401,7 +463,10 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q9}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q9: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
@@ -417,18 +482,115 @@ export class SignupPage extends React.Component<{}, State> {
                             centered
                             fluid
                             placeholder="Select your answer"
-                            options={q1}
+                            options={q10}
+                            onChange={(e: any, data: any) => {
+                              this.setState({ q10: data.value });
+                            }}
                           />
                         </Segment>
                       </Grid.Column>
                       <Grid.Row>
                         <Divider hidden />
-                        <Button primary>Next!</Button>
+                        <Button
+                          primary
+                          onClick={(e: any) => {
+                            this.setState({
+                              stage3: true,
+                              stage2: false,
+                              stage1: false
+                            });
+                          }}
+                        >
+                          Next!
+                        </Button>
                       </Grid.Row>
                     </Grid.Row>
                   </Grid>
                 </>
               )}
+              {this.state.stage3 && (
+                <>
+                  <Header as="h1" textAlign="center">
+                    Help your roomates find you! (optional)
+                  </Header>
+                  <Form.Input
+                    fluid
+                    icon="facebook"
+                    iconPosition="left"
+                    placeholder="Facebook"
+                    onChange={(e: any) => {
+                      this.setState({ facebook: e.target.value });
+                    }}
+                  />
+                  <br />
+                  <Form.Input
+                    fluid
+                    icon="instagram"
+                    iconPosition="left"
+                    placeholder="Instagram"
+                    onChange={(e: any) => {
+                      this.setState({ instagram: e.target.value });
+                    }}
+                  />
+                  <br />
+                  <Form.Input
+                    fluid
+                    icon="linkedin"
+                    iconPosition="left"
+                    placeholder="Linkedin"
+                    onChange={(e: any) => {
+                      this.setState({ linkedin: e.target.value });
+                    }}
+                  />
+                  <br />
+                  <Button
+                    onClick={(e: any) => {
+                      this.setState({
+                        stage4: true,
+                        stage3: false,
+                        stage2: false,
+                        stage1: false
+                      });
+                    }}
+                    color="blue"
+                  >
+                    Continue
+                  </Button>
+                </>
+              )}
+              {this.state.stage4 && (
+                <>
+                  <Header as="h1" textAlign="center">
+                    Give your roomates a little description
+                  </Header>
+                  <Form>
+                    <TextArea
+                      onChange={(e: any) => {
+                        this.setState({ bio: e.target.value });
+                      }}
+                      placeholder="Share a brief bio"
+                    />
+                  </Form>
+                  <Divider hidden />
+                  <Button
+                    onClick={(e: any) => {
+                      this.setState({
+                        stage4: true,
+                        stage3: true,
+                        stage2: true,
+                        stage1: true
+                      });
+                    }}
+                    color="blue"
+                  >
+                    Finish!
+                  </Button>
+                </>
+              )}
+              {this.state.stage1 &&
+                this.state.stage2 &&
+                this.state.stage3 &&
+                this.state.stage4 && <Redirect to="/dashboard" />}
             </Segment>
           </Grid.Column>
         </Grid>
