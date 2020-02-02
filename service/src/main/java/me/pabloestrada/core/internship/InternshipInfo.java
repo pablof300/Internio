@@ -17,15 +17,17 @@ public final class InternshipInfo
     private ObjectId id;
     private ArrayList<Neighborhood> neighborhoods;
     private ArrayList<User> savedRoommates;
+    private int budget;
 
     public InternshipInfo() {
     }
 
-    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate) {
+    public InternshipInfo(String  locationCity, String locationState, Date startDate,Date endDate, int budget) {
         this.locationCity = locationCity;
         this.locationState = locationState;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.budget = budget;
         this.neighborhoods= new ArrayList<Neighborhood>();
         this.id = new ObjectId();
         this.savedRoommates = new ArrayList<User>();
@@ -115,5 +117,13 @@ public final class InternshipInfo
                 return;
             }
         }
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 }
